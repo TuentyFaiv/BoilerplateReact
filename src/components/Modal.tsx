@@ -1,8 +1,10 @@
-import { MouseEvent } from "react";
-import { createPortal } from "react-dom";
+import { useRef } from "react";
 import { useTranslation } from "react-i18next";
-import { ModalProps } from "@interfaces";
+import { withPortal } from "@hoc";
 import { useDatas } from "@hooks";
+
+import type { MouseEvent } from "react";
+import type { ModalProps } from "@typing/proptypes";
 
 import "@stylesComponents/Modal.scss";
 
@@ -18,20 +20,21 @@ const DEFAULT_CONFIG = {
   header: true
 };
 
-export default function Modal({ children, title = "", config = DEFAULT_CONFIG, open, onClose }: ModalProps) {
-  const root = document.querySelector("#modal-root");
-  const { t } = useTranslation("modal", { useSuspense: false });
+function Modal({ children, title = "", config: conf = {}, open, onClose }: ModalProps) {
+  const { t } = useTranslation("modal");
+  const config = { ...DEFAULT_CONFIG, ...conf };
   const datas = useDatas(config);
+  const modalRef = useRef<HTMLElement | null>(null);
 
   const handleStopPropagation = (event: MouseEvent) => {
     event.stopPropagation();
   };
 
-  if (!root) throw new Error("There is no tag with the id \"modal-root\"");
   if (!open) return null;
 
-  return createPortal(
+  return (
     <section
+      ref={modalRef}
       className="modal"
       data-hastitle={Boolean(title)}
       onClick={onClose}
@@ -59,7 +62,8 @@ export default function Modal({ children, title = "", config = DEFAULT_CONFIG, o
           )}
         </button>
       </div>
-    </section>,
-    root
+    </section>
   );
 }
+
+export default withPortal(Modal, "#modal-root");

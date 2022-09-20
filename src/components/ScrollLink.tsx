@@ -1,5 +1,6 @@
 import { Link, useResolvedPath } from "react-router-dom";
-import { ScrollLinkProps } from "@interfaces";
+
+import type { ScrollLinkProps } from "@typing/proptypes";
 
 const ScrollLink = ({ to, text, compareHash, ...props }: ScrollLinkProps) => {
   const { hash } = useResolvedPath(to);

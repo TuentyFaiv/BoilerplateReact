@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
-import { LanguageProps } from "@interfaces";
 import { useModal } from "@hooks";
+
+import type { LanguageProps } from "@typing/proptypes";
 
 import "@stylesComponents/Language.scss";
 

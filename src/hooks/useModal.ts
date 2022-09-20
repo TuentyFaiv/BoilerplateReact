@@ -3,7 +3,8 @@ import { useCallback, useEffect, useState } from "react";
 
 import type { HookModalFunc, HookModalParameters, HookModalReturn } from "@typing/hooks";
 
-export default function useModal({ query: mediaQuery = null, element = "body" } : HookModalParameters): HookModalReturn {
+export default function useModal(config: HookModalParameters = {}): HookModalReturn {
+  const { query: mediaQuery = null, element = "body" } = config;
   const [modal, setModal] = useState(false);
   const resetModal = matchMedia(mediaQuery ?? "(min-width: 0px)");
 
