@@ -1,5 +1,7 @@
 import { createContext, useContext, useReducer, useMemo } from "react";
-import { ContextApp, ContextAppProvider, ContextAppState } from "@interfaces";
+
+import type { ContextApp, ContextAppProvider, ContextAppState } from "@typing/contexts";
+
 import reducer from "./reducer";
 
 const AppContext = createContext<ContextApp>({

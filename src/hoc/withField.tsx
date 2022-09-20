@@ -1,11 +1,13 @@
-/* eslint-disable react/display-name */
-import { ComponentType, forwardRef, Ref } from "react";
-import { FieldHookConfig, useField } from "formik";
-import { HOCField, HOCFieldProps } from "@interfaces";
+import { forwardRef } from "react";
+import { useField } from "formik";
 import { useDatas } from "@hooks";
 
+import type { ComponentType, Ref } from "react";
+import type { FieldHookConfig } from "formik";
+import type { HOCField, HOCFieldProps } from "@typing/hocs";
+
 function withField<T extends HOCField = HOCField>(InputComponent: ComponentType<T>) {
-  return forwardRef((props: Omit<T, keyof HOCField>, ref: Ref<HTMLLabelElement>) => {
+  const WithField = forwardRef((props: Omit<T, keyof HOCField>, ref: Ref<HTMLLabelElement>) => {
     const { label, file, data = {}, ...newProps } = props as T & HOCFieldProps & FieldHookConfig<string>;
     const [field, meta, helpers] = useField(newProps);
     const datas = useDatas(data);
@@ -43,6 +45,10 @@ function withField<T extends HOCField = HOCField>(InputComponent: ComponentType<
       </label>
     );
   });
+
+  WithField.displayName = `withField(${InputComponent.displayName ?? InputComponent.name})`;
+
+  return WithField;
 }
 
 export default withField;

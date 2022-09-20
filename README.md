@@ -48,7 +48,7 @@ To use environment variables copy the file `.env.example` two times and rename o
 | @hoc              | All custom hoc(higher-order component) on src/hoc/index.ts   | `import { withAuth } from "@hoc";` |
 | @pages            | All pages on src/pages/*                                     | `const Home = lazy(() => import("@pages/Home"));` or `import Home from "@pages/Home";` |
 | @utils            | All functions on src/common/utils.ts                         | `import { PaymentError } from "@utils` |
-| @interfaces       | All typing on src/common/interfaces/index.ts                 | `import { SigninValues } from "@iterfaces` |
+| @typing           | All typing on src/common/typing/*                            | `import { SigninValues } from "@iterfaces` |
 | @config           | Global config on src/common/config.ts                        | `import config from "@config";` |
 | @schemas          | All schemas for formik on src/common/schemas/index.ts        | `import { SigninSchema } from "@schemas";` |
 | @services         | All services for connections on src/common/services/index.ts | `import { signin } from "@services";` |

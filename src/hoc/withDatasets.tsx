@@ -1,10 +1,11 @@
-/* eslint-disable react/display-name */
-import { ComponentType, forwardRef } from "react";
-import { HOCDatasets, HOCDatasetsProps } from "@interfaces";
+import { forwardRef } from "react";
 import { useDatas } from "@hooks";
 
+import type { ComponentType } from "react";
+import type { HOCDatasets, HOCDatasetsProps } from "@typing/hocs";
+
 function withDatasets<T extends HOCDatasets = HOCDatasets>(Component: ComponentType<T>) {
-  return forwardRef((props: Omit<T, keyof HOCDatasets>, ref) => {
+  const WithDatasets = forwardRef((props: Omit<T, keyof HOCDatasets>, ref) => {
     const { data = {}, ...newProps } = props as T & HOCDatasetsProps;
     const datas = useDatas(data);
 
@@ -16,6 +17,10 @@ function withDatasets<T extends HOCDatasets = HOCDatasets>(Component: ComponentT
       />
     );
   });
+
+  WithDatasets.displayName = `withDatasets(${Component.displayName ?? Component.name})`;
+
+  return WithDatasets;
 }
 
 export default withDatasets;

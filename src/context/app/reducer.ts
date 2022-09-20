@@ -1,4 +1,4 @@
-import { ContextAppReducerAction, ContextAppState } from "@interfaces";
+import type { ContextAppReducerAction, ContextAppState } from "@typing/contexts";
 
 const DEFAULT_IMAGE = "";
 

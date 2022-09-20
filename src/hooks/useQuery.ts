@@ -1,15 +1,13 @@
 import { useMemo } from "react";
 import { useLocation } from "react-router-dom";
-import { ObjStrString } from "@interfaces";
+
+import type { ObjStrCustom } from "@typing/types";
 
 export default function useQuery() {
   const { search } = useLocation();
-  const searchParams = new URLSearchParams(search);
-  const query: ObjStrString = useMemo(() => ({}), []);
-
-  searchParams.forEach((value, key) => {
-    query[key] = value;
-  });
+  const query: ObjStrCustom<string> = useMemo(() => (
+    Object.fromEntries(new URLSearchParams(search).entries())
+  ), [search]);
 
   return query;
 }

@@ -7,45 +7,45 @@ import "@stylesComponents/Input.scss";
 
 // import IconEye from "@icons/icon-eye.svg";
 
-const Input = ({ error, field, meta, helpers, type, ...props }: Omit<InputFieldProps, "data" | "file">) => {
-  const [showPassword, setShowPassword] = useState(false);
+// const Input = ({ error, field, meta, helpers, type, ...props }: Omit<InputFieldProps, "data" | "file">) => {
+//   const [showPassword, setShowPassword] = useState(false);
 
-  return (
-    <>
-      <input
-        id={props.id || props.name}
-        className="input__input"
-        data-error={error}
-        type={(type === "password" && showPassword) ? "text" : type}
-        {...field}
-        {...props}
-      />
-      {type === "password" && (
-        <button
-          type="button"
-          className="input__show"
-          onClick={() => setShowPassword(!showPassword)}
-        >
-          <img
-            src={showPassword ? "IconEye" : "IconEyeClose"}
-            alt={showPassword ? "Show password" : "Hide password"}
-            className="input__show-icon"
-          />
-        </button>
-      )}
-    </>
-  );
-};
+//   return (
+//     <>
+//       <input
+//         id={props.id || props.name}
+//         className="input__input"
+//         data-error={error}
+//         type={(type === "password" && showPassword) ? "text" : type}
+//         {...field}
+//         {...props}
+//       />
+//       {type === "password" && (
+//         <button
+//           type="button"
+//           className="input__show"
+//           onClick={() => setShowPassword(!showPassword)}
+//         >
+//           <img
+//             src={showPassword ? "IconEye" : "IconEyeClose"}
+//             alt={showPassword ? "Show password" : "Hide password"}
+//             className="input__show-icon"
+//           />
+//         </button>
+//       )}
+//     </>
+//   );
+// };
 
-const Area = ({ error, field, meta, helpers, ...props }: Omit<AreaFieldProps, "data" | "file">) => (
-  <textarea
-    id={props.id || props.name}
-    data-error={error}
-    className="input__area"
-    {...field}
-    {...props}
-  />
-);
+// const Area = ({ error, field, meta, helpers, ...props }: Omit<AreaFieldProps, "data" | "file">) => (
+//   <textarea
+//     id={props.id || props.name}
+//     data-error={error}
+//     className="input__area"
+//     {...field}
+//     {...props}
+//   />
+// );
 
 const FileInput = ({ error, field, meta, helpers, ...props }: Omit<FileFieldProps, "data" | "file">) => {
   const { profile, defaultValue, alt, accept = "image/*", onChange, ...remainingProps } = props;
@@ -166,54 +166,54 @@ const SelectInput = ({ error, field, meta, helpers, ...props }: Omit<SelectField
   );
 };
 
-const CheckboxInput = ({ children, label, label2 = null, ...props }: Omit<InputProps, "data">, ref: Ref<HTMLLabelElement>) => (
-  <label
-    ref={ref}
-    htmlFor={props.id}
-    data-checked={props.checked}
-    className="input input--check"
-    onClick={props.onSelect}
-    {...props.datas}
-  >
-    {props.value ? (
-      <Field type="checkbox" value={props.value} id={props.id} name={props.name} className="input__checkbox" />
-    ) : (
-      <Field type="checkbox" id={props.id} name={props.name} className="input__checkbox" />
-    )}
-    <ErrorMessage component="span" name={props.name} className="input__checkbox-error" />
-    <span className="input__text input__text--check">
-      {label}
-      {children}
-      {label2}
-    </span>
-  </label>
-);
+// const CheckboxInput = ({ children, label, label2 = null, ...props }: Omit<InputProps, "data">, ref: Ref<HTMLLabelElement>) => (
+//   <label
+//     ref={ref}
+//     htmlFor={props.id}
+//     data-checked={props.checked}
+//     className="input input--check"
+//     onClick={props.onSelect}
+//     {...props.datas}
+//   >
+//     {props.value ? (
+//       <Field type="checkbox" value={props.value} id={props.id} name={props.name} className="input__checkbox" />
+//     ) : (
+//       <Field type="checkbox" id={props.id} name={props.name} className="input__checkbox" />
+//     )}
+//     <ErrorMessage component="span" name={props.name} className="input__checkbox-error" />
+//     <span className="input__text input__text--check">
+//       {label}
+//       {children}
+//       {label2}
+//     </span>
+//   </label>
+// );
 
-const RadioInput = ({ children, name, checked, value, ...props }: Omit<InputProps, "data">, ref: Ref<HTMLLabelElement>) => (
-  <label
-    ref={ref}
-    htmlFor={props.id}
-    data-checked={checked}
-    data-payment={props.payment}
-    className="input input--radio"
-    onClick={props.onSelect}
-    {...props.datas}
-  >
-    <Field type="radio" id={props.id} name={name} value={value} className="input__radio" />
-    <ErrorMessage component="span" name={name} className="input__radio-error" />
-    <span className="input__text input__text--radio">
-      {props.label}
-      {children}
-      {props.label2}
-    </span>
-  </label>
-);
+// const RadioInput = ({ children, name, checked, value, ...props }: Omit<InputProps, "data">, ref: Ref<HTMLLabelElement>) => (
+//   <label
+//     ref={ref}
+//     htmlFor={props.id}
+//     data-checked={checked}
+//     data-payment={props.payment}
+//     className="input input--radio"
+//     onClick={props.onSelect}
+//     {...props.datas}
+//   >
+//     <Field type="radio" id={props.id} name={name} value={value} className="input__radio" />
+//     <ErrorMessage component="span" name={name} className="input__radio-error" />
+//     <span className="input__text input__text--radio">
+//       {props.label}
+//       {children}
+//       {props.label2}
+//     </span>
+//   </label>
+// );
 
-export const Checkbox = withDatasets<InputProps>(forwardRef(CheckboxInput));
-export const Radio = withDatasets<InputProps>(forwardRef(RadioInput));
+// export const Checkbox = withDatasets<InputProps>(forwardRef(CheckboxInput));
+// export const Radio = withDatasets<InputProps>(forwardRef(RadioInput));
 
-export const TextArea = withField<AreaFieldProps>(Area);
+// export const TextArea = withField<AreaFieldProps>(Area);
 export const Select = withField<SelectFieldProps>(memo(SelectInput));
 export const File = withField<FileFieldProps>(FileInput);
 
-export default withField<InputFieldProps>(Input);
+// export default withField<InputFieldProps>(Input);

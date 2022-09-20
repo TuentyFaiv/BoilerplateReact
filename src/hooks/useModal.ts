@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { useCallback, useEffect, useState } from "react";
-import { HookModalFunc, HookModalParameters, HookModalReturn } from "@interfaces";
 
-export default function useModal(mediaQuery: HookModalParameters = null): HookModalReturn {
+import type { HookModalFunc, HookModalParameters, HookModalReturn } from "@typing/hooks";
+
+export default function useModal({ query: mediaQuery = null, element = "body" } : HookModalParameters): HookModalReturn {
   const [modal, setModal] = useState(false);
   const resetModal = matchMedia(mediaQuery ?? "(min-width: 0px)");
 
@@ -16,13 +18,13 @@ export default function useModal(mediaQuery: HookModalParameters = null): HookMo
   useEffect(() => {
     const disableScroll = (query: MediaQueryList | MediaQueryListEvent) => {
       const html = document.querySelector("html")!;
-      const body = document.querySelector("body")!;
+      const body: HTMLElement | null = document.querySelector(element);
       if (modal && query.matches) {
         html.style.overflow = "hidden";
-        body.style.overflow = "hidden";
+        if (body) body.style.overflow = "hidden";
       } else {
         html.style.overflow = "";
-        body.style.overflow = "";
+        if (body) body.style.overflow = "";
       }
     };
     const listener = (event: MediaQueryListEvent) => {
@@ -36,7 +38,7 @@ export default function useModal(mediaQuery: HookModalParameters = null): HookMo
     return () => {
       resetModal.removeEventListener("change", listener);
     };
-  }, [modal, resetModal, mediaQuery]);
+  }, [modal, resetModal, mediaQuery, element]);
 
   return [modal, toogleModal];
 }

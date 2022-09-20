@@ -1,29 +1,20 @@
-import {
+import type {
   DetailedHTMLProps,
   InputHTMLAttributes,
-  MouseEvent,
   ReactNode,
-  TextareaHTMLAttributes
+  TextareaHTMLAttributes,
+  MouseEvent
 } from "react";
-import { FieldHookConfig } from "formik";
-
-import { HOCAuth, HOCDatasets, HOCField } from "./interfaces";
-import {
-  HookModalFunc,
-  ObjStrBoolean,
-  ObjStrCommon
-} from "./types";
-
-export interface HOCDatasetsProps {
-  data?: ObjStrCommon;
-}
-
-export type HOCFieldProps = {
-  data?: ObjStrCommon;
-  label: string;
-  file?: boolean;
-  readOnly?: boolean;
-};
+import type { FieldHookConfig } from "formik";
+import type { ObjStrCustom } from "./types";
+import type { HookModalFunc } from "./hooks";
+import type {
+  HOCAuth,
+  HOCDatasets,
+  HOCDatasetsProps,
+  HOCField,
+  HOCFieldProps
+} from "./hocs";
 
 export interface InputProps extends HOCDatasetsProps, HOCDatasets {
   children?: ReactNode;
@@ -66,7 +57,7 @@ export type FileFieldProps = HOCFieldProps & HOCField & InputElement & {
   placeholder?: string;
   defaultValue?: string;
   profile?: boolean;
-  onChange?: (values: FileList[] | File) => void;
+  onChange?: (values: File[] | File) => void;
 };
 
 type SelectOption = {
@@ -95,9 +86,9 @@ export interface LoaderProps {
 }
 
 export interface ModalProps {
-  children: (config: ObjStrBoolean) => ReactNode;
+  children: (config: ObjStrCustom<boolean>) => ReactNode;
   title?: string;
-  config?: ObjStrBoolean;
+  config?: ObjStrCustom<boolean>;
   open: boolean;
   onClose: HookModalFunc;
 }
