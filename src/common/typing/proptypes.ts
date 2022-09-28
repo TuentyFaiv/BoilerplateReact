@@ -81,9 +81,11 @@ export interface LanguageProps {
 
 export type HeaderProps = HOCAuth;
 
-export interface LoaderProps {
-  msg?: string;
+export interface LoaderSimpleProps {
+  msg: string;
 }
+
+export type LoaderPageProps = Partial<LoaderSimpleProps>;
 
 export interface ModalProps {
   children: (config: ObjStrCustom<boolean>) => ReactNode;
