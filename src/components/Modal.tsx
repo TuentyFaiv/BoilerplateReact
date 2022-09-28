@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { withPortal } from "@hoc";
 import { useDatas } from "@hooks";
+import GlobalConfig from "@config";
 
 import type { MouseEvent } from "react";
 import type { ModalProps } from "@typing/proptypes";
@@ -21,7 +22,7 @@ const DEFAULT_CONFIG = {
 };
 
 function Modal({ children, title = "", config: conf = {}, open, onClose }: ModalProps) {
-  const { t } = useTranslation("modal");
+  const { t } = useTranslation("modal", { useSuspense: false });
   const config = { ...DEFAULT_CONFIG, ...conf };
   const datas = useDatas(config);
   const modalRef = useRef<HTMLElement | null>(null);
@@ -47,7 +48,7 @@ function Modal({ children, title = "", config: conf = {}, open, onClose }: Modal
             {title ? (
               <h2 className="modal__title">{title}</h2>
             ) : (
-              <img src="Logo" alt="" className="modal__logo" />
+              <img src="Logo" alt={GlobalConfig.brand} className="modal__logo" />
             )}
           </div>
         ) : null}
@@ -58,7 +59,7 @@ function Modal({ children, title = "", config: conf = {}, open, onClose }: Modal
           {!config.close ? (
             <span>{t("modal-accept")}</span>
           ) : (
-            <img src="IconClose" alt="" className="modal__button-icon" />
+            <img src="IconClose" alt={t("close")} className="modal__button-icon" />
           )}
         </button>
       </div>
