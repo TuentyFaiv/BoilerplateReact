@@ -4,6 +4,7 @@ import swal from "sweetalert";
 import { SigninSchema, DEFAULT_SIGNIN_VALUES } from "@schemas";
 // import { useAuthService } from "@services"; // Service Auth
 // import { useAppContext } from "@context";
+// import { Actions } from "@typing/enums";
 
 import type { BodySignin } from "@typing/services";
 
@@ -26,7 +27,7 @@ export default function SigninForm() {
 
       // actions.resetForm({ values: DEFAULT_SIGNIN_VALUES });
 
-      // dispatch({ type: "SIGNIN" }); // Add payload property to signin
+      // dispatch({ type: Actions.SIGNIN }); // Add payload property to signin
     } catch (error) {
       let message = "¡Oh no!";
       if (error instanceof Error) message = error.message;

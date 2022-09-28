@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
 
 import "@stylesPages/Home.scss";
-import { SignupForm } from "@containers";
 
 export default function Home() {
   const { t } = useTranslation();
@@ -9,7 +8,6 @@ export default function Home() {
   return (
     <div className="home">
       <h1 className="home__title">{t("home-title")}</h1>
-      <SignupForm />
     </div>
   );
 }

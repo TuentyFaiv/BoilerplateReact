@@ -4,6 +4,7 @@ import swal from "sweetalert";
 import { SignupSchema, DEFAULT_SIGNUP_VALUES } from "@schemas";
 // import { useAuthService } from "@services"; // Service Auth
 // import { useAppContext } from "@context";
+// import { Actions } from "@typing/enums";
 
 import type { BodySignup } from "@typing/services";
 
@@ -12,7 +13,7 @@ import { Checkbox, Input, Select } from "@components";
 export default function SigninForm() {
   const { t } = useTranslation("formik");
   // const { dispatch } = useAppContext();
-  // const { signup } = useAuthService();
+  // const { signup, singin } = useAuthService();
 
   const formTranslations = {
     required: t("required"),
@@ -25,10 +26,11 @@ export default function SigninForm() {
       actions.setSubmitting(true);
 
       // Here should put the signup() with await
+      // Here should put the signin() with await
 
       // actions.resetForm({ values: DEFAULT_SIGNUP_VALUES });
 
-      // dispatch({ type: "SIGNUP" }); // Add payload property to signup
+      // dispatch({ type: Actions.SIGNIN }); // Add payload property to signin after signup
     } catch (error) {
       let message = "¡Oh no!";
       if (error instanceof Error) message = error.message;

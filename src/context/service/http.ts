@@ -14,17 +14,19 @@ import type {
 } from "@typing/contexts";
 
 export default class Http {
-  private api: string;
-  private api_local: string;
+  #api: string;
+  #api_local: string;
+  #token?: string;
 
-  constructor(private token?: string) {
-    this.api = globalConfig.api;
-    this.api_local = globalConfig.api_local;
+  constructor(token?: string) {
+    this.#api = globalConfig.api;
+    this.#api_local = globalConfig.api_local;
+    this.#token = token;
 
     Object.freeze(this);
   }
 
-  private async connection<T, R>(config: HTTPConfigConnection<T>): Promise<HTTPConnectionReturn<R>> {
+  async #connection<T, R>(config: HTTPConfigConnection<T>): Promise<HTTPConnectionReturn<R>> {
     try {
       const contentType = config.contentType ?? HTTPContentType.JSON;
       const headers = {
@@ -32,7 +34,7 @@ export default class Http {
           "Content-Type": contentType
         } : {}),
         ...(config.secure ? {
-          Authorization: `Bearer ${this.token}`
+          Authorization: `Bearer ${this.#token}`
         } : {})
       };
       let body: string | FormData;
@@ -65,9 +67,9 @@ export default class Http {
         ...(config.signal ? { signal: config.signal } : {})
       };
 
-      const url = `${config.local ? this.api_local : this.api}/${config.endpoint}${config.query}`;
+      const url = `${config.local ? this.#api_local : this.#api}/${config.endpoint}${config.query}`;
 
-      if (config.log) this.log({ url, request: requestConfig });
+      if (config.log) this.#log({ url, request: requestConfig });
 
       const request = await fetch(url, requestConfig);
 
@@ -75,7 +77,7 @@ export default class Http {
         default:
           const response = await request.json();
 
-          if (config.log) this.log({ response });
+          if (config.log) this.#log({ response });
           if (response.errors || request.status !== 200) {
             throw new ServiceError({
               message: config.errorMessage ?? response.message,
@@ -113,19 +115,19 @@ export default class Http {
     }
   }
 
-  private log(httpLog: HTTPLog) {
+  #log(httpLog: HTTPLog) {
     console.log({
       ...httpLog,
       apis: {
-        cloud: this.api,
-        local: this.api_local
+        cloud: this.#api,
+        local: this.#api_local
       }
     });
   }
 
   async get<R>({ endpoint, query = "", secure = true, ...config }: HTTPConfigGet) {
 
-    return this.connection<never, R>({
+    return this.#connection<never, R>({
       method: HTTPMetod.GET,
       secure,
       endpoint,
@@ -136,7 +138,7 @@ export default class Http {
 
   async put<T, R>({ endpoint, query = "", secure = true, ...config }: HTTPConfigMethods<T>) {
 
-    return this.connection<T, R>({
+    return this.#connection<T, R>({
       method: HTTPMetod.PUT,
       secure,
       endpoint,
@@ -147,7 +149,7 @@ export default class Http {
 
   async post<T, R>({ endpoint, query = "", secure = true, ...config }: HTTPConfigMethods<T>) {
 
-    return this.connection<T, R>({
+    return this.#connection<T, R>({
       method: HTTPMetod.POST,
       secure,
       endpoint,
@@ -158,7 +160,7 @@ export default class Http {
 
   async delete<T, R>({ endpoint, query = "", secure = true, ...config }: HTTPConfigMethods<T>) {
 
-    return this.connection<T, R>({
+    return this.#connection<T, R>({
       method: HTTPMetod.DELETE,
       secure,
       endpoint,

@@ -25,9 +25,7 @@ export function AppProvider({ children }: ContextAppProvider) {
 
   const [global, dispatch] = useReducer(reducer, initialState);
 
-  const contextValue = useMemo(() => ({
-    global, dispatch
-  }), [global]);
+  const contextValue = useMemo(() => ({ global, dispatch }), [global]);
 
   return (
     <AppContext.Provider value={contextValue}>
