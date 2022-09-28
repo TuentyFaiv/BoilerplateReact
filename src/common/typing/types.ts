@@ -27,3 +27,20 @@ export type SelectOption = {
   label: string;
   value: string;
 };
+
+export type Day = {
+  key: number;
+  name: string;
+  number: string;
+};
+
+export type Month = {
+  days: Day[];
+  name: string;
+  number: string;
+};
+
+export type Year = {
+  number: number;
+  months: Month[];
+};

@@ -10,6 +10,11 @@ export const formatter = new Intl.NumberFormat("en-US", {
   // maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
 });
 
+// DatePicker
+export const spacesInCalendar = 42;
+export const weekDays = 7;
+export const DEFAULT_FORMAT = "yyyy-MM-dd";
+
 export class PaymentError extends Error {
   title: string;
   date: Date;

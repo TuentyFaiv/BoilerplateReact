@@ -6,8 +6,8 @@ import { es, enUS } from "date-fns/locale";
 import type {
   HookCalendarLangs,
   HookCalendarParam,
-  HookCalendarState,
-  HookCalendarReturn
+  HookCalendarReturn,
+  HookCalendarState
 } from "@typing/hooks";
 
 const langs: HookCalendarLangs = {
@@ -24,8 +24,15 @@ export default function useCalendar(type: HookCalendarParam = "past"): HookCalen
     month: "",
     day: ""
   });
-  const currentYear = useMemo(() => new Date().getFullYear(), []);
-  const adultYear = useMemo(() => currentYear - 18, [currentYear]);
+  const date = useMemo(() => {
+    const today = new Date();
+    return new Date(
+      today.getFullYear(),
+      today.getMonth(),
+      today.getDate()
+    );
+  }, []);
+  const initialYear = useMemo(() => (type === "past" ? date.getFullYear() - 18 : date.getFullYear()), [date, type]);
 
   const getMonths = useCallback((year: number) => new Array(12).fill("").map((_, month) => {
     const monthOfYear = new Date(year, month);
@@ -39,33 +46,34 @@ export default function useCalendar(type: HookCalendarParam = "past"): HookCalen
         const dayName = dayFormatted.charAt(0).toUpperCase() + dayFormatted.slice(1);
 
         return {
+          key: dayOfMonth.getDay(),
           name: dayName,
-          number: format(dayOfMonth, "dd")
+          number: `${dayOfMonth.getDate()}`.padStart(2, "0")
         };
       }),
       name: monthName,
-      number: format(monthOfYear, "MM")
+      number: `${monthOfYear.getMonth() + 1}`.padStart(2, "0")
     };
   }), [locale]);
   const years = useMemo(() => new Array(80).fill("").map((_, index) => {
-    const year = type === "past" ? adultYear - index : currentYear + index;
+    const year: number = type === "past" ? initialYear - index : initialYear + index;
 
     return {
-      year,
+      number: year,
       months: getMonths(year)
     };
-  }), [currentYear, adultYear, type, getMonths]);
-  const months = useMemo(() => getMonths(currentYear), [getMonths, currentYear]);
+  }), [initialYear, type, getMonths]);
+  const months = useMemo(() => getMonths(initialYear), [getMonths, initialYear]);
   const days = useMemo(() => (
     selected.year === 0 && selected.month === ""
       ? months[0].days
       : years
-        .find(({ year }) => (year === selected.year))?.months
+        .find(({ number }) => (number === selected.year))?.months
         .find(({ number }) => (number === selected.month))?.days ?? months[0].days
   ), [months, years, selected.year, selected.month]);
 
-  const chooseYear = useCallback((year: string) => {
-    setSelected((prev) => ({ ...prev, year: parseInt(year, 10) }));
+  const chooseYear = useCallback((year: string | number) => {
+    setSelected((prev) => ({ ...prev, year: parseInt(`${year}`, 10) }));
   }, [setSelected]);
 
   const chooseMonth = useCallback((month: string) => {
@@ -76,29 +84,15 @@ export default function useCalendar(type: HookCalendarParam = "past"): HookCalen
     setSelected((prev) => ({ ...prev, day }));
   }, [setSelected]);
 
-  const selects = useMemo(() => ({
-    years: years.map(({ year }) => ({
-      label: `${year}`,
-      value: `${year}`
-    })),
-    months: months.map(({ name, number }) => ({
-      label: name,
-      value: number
-    })),
-    days: days.map(({ number }) => ({
-      label: number,
-      value: number
-    }))
-  }), [years, months, days]);
-
   return {
     calendar: {
       years,
       months,
       days,
-      selected
+      selected,
+      date,
+      locale
     },
-    selects,
     chooseYear,
     chooseMonth,
     chooseDay
