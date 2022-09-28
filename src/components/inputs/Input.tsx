@@ -33,4 +33,6 @@ const GeneralInput = ({ error, field, meta, helpers, type, ...props }: Omit<Inpu
   );
 };
 
+GeneralInput.displayName = "Input";
+
 export default withField<InputFieldProps>(GeneralInput);

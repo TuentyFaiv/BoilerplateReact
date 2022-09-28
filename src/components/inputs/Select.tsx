@@ -74,6 +74,6 @@ const SelectInput = ({ error, field, meta, helpers, ...props }: Omit<SelectField
 
 const Select = memo(SelectInput);
 
-Select.displayName = "memo(Select)";
+Select.displayName = "Select";
 
 export default withField<SelectFieldProps>(Select);

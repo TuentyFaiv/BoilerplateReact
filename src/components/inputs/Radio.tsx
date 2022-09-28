@@ -37,4 +37,6 @@ const RadioInput = ({ children, name, checked, value, ...props }: Omit<InputProp
 
 const Radio = forwardRef(RadioInput);
 
+Radio.displayName = "Radio";
+
 export default withDatasets<InputProps>(Radio);

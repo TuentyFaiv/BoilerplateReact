@@ -40,4 +40,6 @@ const CheckboxInput = ({ children, label, label2 = null, ...props }: Omit<InputP
 
 const Checkbox = forwardRef(CheckboxInput);
 
+Checkbox.displayName = "Checkbox";
+
 export default withDatasets<InputProps>(Checkbox);

@@ -13,4 +13,6 @@ const Area = ({ error, field, meta, helpers, ...props }: Omit<AreaFieldProps, "d
   />
 );
 
+Area.displayName = "TextArea";
+
 export default withField<AreaFieldProps>(Area);
