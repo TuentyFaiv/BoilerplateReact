@@ -1,31 +1,29 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Formik, Form, FormikHelpers } from "formik";
 import swal from "sweetalert";
-import { SigninValues, AuthStateFrom } from "@interfaces";
 import { SigninSchema, DEFAULT_SIGNIN_VALUES } from "@schemas";
-// import { signin } from "@services"; // Service fetch to signin
-import { useAppContext } from "@context";
+// import { useAuthService } from "@services"; // Service Auth
+// import { useAppContext } from "@context";
+
+import type { BodySignin } from "@typing/services";
 
 import { Input } from "@components";
 
 export default function SigninForm() {
   const { t } = useTranslation("formik");
-  const { dispatch } = useAppContext();
+  // const { dispatch } = useAppContext();
+  // const { signin } = useAuthService();
 
-  const location = useLocation();
-  const navigate = useNavigate();
-  const from = (location.state as AuthStateFrom)?.from || "/";
   const formTranslations = {
     required: t("required")
   };
 
-  const handleSubmit = async (values: SigninValues, actions: FormikHelpers<SigninValues>) => {
+  const handleSubmit = async (values: BodySignin, actions: FormikHelpers<BodySignin>) => {
     try {
       actions.setSubmitting(true);
 
       // Here should put the signin() with await
-      navigate(from, { replace: true });
+
       // actions.resetForm({ values: DEFAULT_SIGNIN_VALUES });
 
       // dispatch({ type: "SIGNIN" }); // Add payload property to signin

@@ -14,7 +14,7 @@ function withField<T extends HOCField = HOCField>(InputComponent: ComponentType<
     const [field, meta, helpers] = useField(newProps);
     const datas = useDatas(data);
     const error = Boolean(meta.touched && meta.error);
-    const fileStyles = file ? " input--file" : "";
+    const fileStyles = file ? " field--file" : "";
 
     return (
       <label
@@ -25,7 +25,7 @@ function withField<T extends HOCField = HOCField>(InputComponent: ComponentType<
         data-readonly={newProps.readOnly}
         data-disabled={newProps.disabled}
         data-password={newProps.type === "password"}
-        className={`input${fileStyles}`}
+        className={`field${fileStyles}`}
         {...datas}
       >
         <InputComponent
@@ -37,10 +37,10 @@ function withField<T extends HOCField = HOCField>(InputComponent: ComponentType<
           label={label}
         />
         <p
-          className="input__text"
+          className="field__text"
           title={meta.error}
           data-error={error}
-          data-error-msg={error ? ` | ${meta.error}` : null}
+          data-error-msg={error ? meta.error : null}
         >
           {label}
         </p>

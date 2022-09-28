@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import { memo, useEffect, useMemo, useRef } from "react";
 import { withField } from "@hoc";
 
@@ -49,21 +48,21 @@ const SelectInput = ({ error, field, meta, helpers, ...props }: Omit<SelectField
   return (
     <div
       ref={selectRef}
-      className="input__select"
+      className="field__select"
       onClick={handleSelect}
       role="button"
       tabIndex={0}
       data-select="true"
     >
-      <p className="input__select-value">
+      <p className="field__select-value">
         {value ?? label}
       </p>
-      <div className="input__select-options" onMouseLeave={handleCloseSelect}>
+      <div className="field__select-options" onMouseLeave={handleCloseSelect}>
         {options.map((option) => (
           <span
             key={option.key ?? option.value}
             data-value={option.value}
-            className="input__select-option"
+            className="field__select-option"
           >
             {option.label}
           </span>
@@ -73,4 +72,8 @@ const SelectInput = ({ error, field, meta, helpers, ...props }: Omit<SelectField
   );
 };
 
-export const Select = withField<SelectFieldProps>(memo(SelectInput));
+const Select = memo(SelectInput);
+
+Select.displayName = "memo(Select)";
+
+export default withField<SelectFieldProps>(Select);

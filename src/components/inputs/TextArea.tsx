@@ -7,10 +7,10 @@ const Area = ({ error, field, meta, helpers, ...props }: Omit<AreaFieldProps, "d
   <textarea
     id={props.id || props.name}
     data-error={error}
-    className="input__area"
+    className="field__area"
     {...field}
     {...props}
   />
 );
 
-export const TextArea = withField<AreaFieldProps>(Area);
+export default withField<AreaFieldProps>(Area);

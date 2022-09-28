@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import { forwardRef } from "react";
 import { ErrorMessage, Field } from "formik";
 import { withDatasets } from "@hoc";
@@ -12,13 +11,23 @@ const RadioInput = ({ children, name, checked, value, ...props }: Omit<InputProp
     htmlFor={props.id}
     data-checked={checked}
     data-payment={props.payment}
-    className="input input--radio"
+    className="field field--radio"
     onClick={props.onSelect}
     {...props.datas}
   >
-    <Field type="radio" id={props.id} name={name} value={value} className="input__radio" />
-    <ErrorMessage component="span" name={name} className="input__radio-error" />
-    <span className="input__text input__text--radio">
+    <Field
+      type="radio"
+      id={props.id}
+      name={name}
+      value={value}
+      className="field__radio"
+    />
+    <ErrorMessage
+      component="span"
+      name={name}
+      className="field__radio-error"
+    />
+    <span className="field__text field__text--radio">
       {props.label}
       {children}
       {props.label2}
@@ -26,4 +35,6 @@ const RadioInput = ({ children, name, checked, value, ...props }: Omit<InputProp
   </label>
 );
 
-export const Radio = withDatasets<InputProps>(forwardRef(RadioInput));
+const Radio = forwardRef(RadioInput);
+
+export default withDatasets<InputProps>(Radio);

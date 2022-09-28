@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import { useState } from "react";
 import { withField } from "@hoc";
 
@@ -11,7 +10,7 @@ const GeneralInput = ({ error, field, meta, helpers, type, ...props }: Omit<Inpu
     <>
       <input
         id={props.id || props.name}
-        className="input__input"
+        className="field__input"
         data-error={error}
         type={(type === "password" && showPassword) ? "text" : type}
         {...field}
@@ -20,13 +19,13 @@ const GeneralInput = ({ error, field, meta, helpers, type, ...props }: Omit<Inpu
       {type === "password" && (
         <button
           type="button"
-          className="input__show"
+          className="field__show"
           onClick={() => setShowPassword(!showPassword)}
         >
           <img
             src={showPassword ? "IconEye" : "IconEyeClose"}
             alt={showPassword ? "Show password" : "Hide password"}
-            className="input__show-icon"
+            className="field__show-icon"
           />
         </button>
       )}
@@ -34,4 +33,4 @@ const GeneralInput = ({ error, field, meta, helpers, type, ...props }: Omit<Inpu
   );
 };
 
-export const Input = withField<InputFieldProps>(GeneralInput);
+export default withField<InputFieldProps>(GeneralInput);

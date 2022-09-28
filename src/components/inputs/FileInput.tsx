@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import { withField } from "@hoc";
 
 import type { ChangeEvent } from "react";
@@ -11,7 +10,7 @@ const FileInput = ({ error, field, meta, helpers, ...props }: Omit<FileFieldProp
   const handleSelectFile = (event: ChangeEvent) => {
     const { files } = event.target as HTMLInputElement;
     if (files) {
-      const filesSelected = props.multiple ? [...value, ...files] : files[0];
+      const filesSelected = props.multiple ? [...value, ...files] as File[] : files[0];
       if (onChange) onChange(filesSelected);
       helpers.setValue(filesSelected);
     }
@@ -19,15 +18,15 @@ const FileInput = ({ error, field, meta, helpers, ...props }: Omit<FileFieldProp
 
   if (profile) {
     return (
-      <div className="input__profile">
+      <div className="field__profile">
         <img
           src={value ? URL.createObjectURL(value) : defaultValue}
           alt={value?.name || alt}
-          className="input__profile-image"
+          className="field__profile-image"
         />
         <input
           id={props.id || props.name}
-          className="input__file"
+          className="field__file"
           data-error={error}
           type="file"
           accept={accept}
@@ -42,7 +41,7 @@ const FileInput = ({ error, field, meta, helpers, ...props }: Omit<FileFieldProp
   return (
     <input
       id={props.id || props.name}
-      className="input__file"
+      className="field__file"
       data-error={error}
       type="file"
       accept={accept}
@@ -53,4 +52,4 @@ const FileInput = ({ error, field, meta, helpers, ...props }: Omit<FileFieldProp
   );
 };
 
-export const File = withField<FileFieldProps>(FileInput);
+export default withField<FileFieldProps>(FileInput);
