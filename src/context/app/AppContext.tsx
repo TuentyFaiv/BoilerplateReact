@@ -10,7 +10,7 @@ const AppContext = createContext<ContextApp>({
     user: {},
     onboarding: null
   },
-  dispatch: () => { }
+  dispatch: () => {}
 });
 
 export function AppProvider({ children }: ContextAppProvider) {

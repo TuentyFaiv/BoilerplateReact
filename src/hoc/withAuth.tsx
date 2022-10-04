@@ -5,7 +5,7 @@ import { useAppContext } from "@context";
 import type { ComponentType } from "react";
 import type { HOCAuthState, HOCAuth, HOCAuthType } from "@typing/hocs";
 
-function withAuth<T extends HOCAuth>(Component: ComponentType<T>, type: HOCAuthType = "page") {
+function withAuth<T extends HOCAuth = HOCAuth>(Component: ComponentType<T>, type: HOCAuthType = "page") {
   const WithAuth = (props: Omit<T, keyof HOCAuth>) => {
     const { global: { user, sessionId } } = useAppContext();
     const { pathname, search, state } = useLocation();

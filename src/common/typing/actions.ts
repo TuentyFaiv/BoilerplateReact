@@ -16,7 +16,6 @@ export type UpdateUserAction = {
 };
 
 export type UpdateProfileImageAction = {
-
   type: Actions.UPDATE_PROFILE_IMAGE;
   payload: string;
 };
