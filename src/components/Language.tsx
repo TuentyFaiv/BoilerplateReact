@@ -1,6 +1,8 @@
 import { useTranslation } from "react-i18next";
-import { LanguageProps } from "@interfaces";
 import { useModal } from "@hooks";
+import config from "@config";
+
+import type { LanguageProps } from "@typing/proptypes";
 
 import "@stylesComponents/Language.scss";
 
@@ -20,7 +22,7 @@ export default function Language({ onClose }: LanguageProps) {
       {lang}
       {modal && (
         <span className="lang__options">
-          {["es", "en-US"].map((language) => (
+          {config.i18n_langs.map((language) => (
             <button
               key={language}
               type="button"

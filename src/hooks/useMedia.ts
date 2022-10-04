@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { HookMediaParameters, HookMediaReturn } from "@interfaces";
 
-export default function useMedia(mediaQuery: HookMediaParameters = null): HookMediaReturn {
+import type { HookMediaParameters, HookMediaReturn } from "@typing/hooks";
+
+export default function useMedia(query: HookMediaParameters = null): HookMediaReturn {
   const [device, setDevice] = useState(false);
-  const media = matchMedia(mediaQuery ?? "(min-width: 0px)");
+  const media = matchMedia(query ?? "(min-width: 0px)");
 
   useEffect(() => {
     const listener = (event: MediaQueryListEvent) => {

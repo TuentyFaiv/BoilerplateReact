@@ -1,10 +1,12 @@
-import { ContextAppReducerAction, ContextAppState } from "@interfaces";
+import { Actions } from "@typing/enums";
+
+import type { ContextAppReducerAction, ContextAppState } from "@typing/contexts";
 
 const DEFAULT_IMAGE = "";
 
 export default function reducer(state: ContextAppState, action: ContextAppReducerAction): ContextAppState {
   switch (action.type) {
-    case "SIGNIN":
+    case Actions.SIGNIN:
       const { sessionId, onboarding, profileImage: imageUrl, ...defaultUser } = action.payload;
       const profileImage = (imageUrl === "" || imageUrl === null || imageUrl === undefined) ? DEFAULT_IMAGE : imageUrl;
       const user = { ...defaultUser, profileImage };
@@ -16,7 +18,7 @@ export default function reducer(state: ContextAppState, action: ContextAppReduce
         sessionId,
         onboarding
       };
-    case "SIGNOUT":
+    case Actions.SIGNOUT:
       localStorage.removeItem("user");
       localStorage.removeItem("sessionId");
       return {
@@ -24,7 +26,7 @@ export default function reducer(state: ContextAppState, action: ContextAppReduce
         user: {},
         sessionId: null
       };
-    case "CHANGE_ONBOARDING":
+    case Actions.CHANGE_ONBOARDING:
       return {
         ...state,
         onboarding: action.payload

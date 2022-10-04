@@ -1,16 +1,20 @@
-/* eslint-disable react/display-name */
-import { ComponentType, forwardRef, Ref } from "react";
-import { FieldHookConfig, useField } from "formik";
-import { HOCField, HOCFieldProps } from "@interfaces";
+import { forwardRef } from "react";
+import { useField } from "formik";
 import { useDatas } from "@hooks";
 
+import type { ComponentType, Ref } from "react";
+import type { FieldHookConfig } from "formik";
+import type { HOCField, HOCFieldProps } from "@typing/hocs";
+
+import "@stylesComponents/Input.scss";
+
 function withField<T extends HOCField = HOCField>(InputComponent: ComponentType<T>) {
-  return forwardRef((props: Omit<T, keyof HOCField>, ref: Ref<HTMLLabelElement>) => {
+  const WithField = forwardRef((props: Omit<T, keyof HOCField>, ref: Ref<HTMLLabelElement>) => {
     const { label, file, data = {}, ...newProps } = props as T & HOCFieldProps & FieldHookConfig<string>;
     const [field, meta, helpers] = useField(newProps);
     const datas = useDatas(data);
     const error = Boolean(meta.touched && meta.error);
-    const fileStyles = file ? " input--file" : "";
+    const fileStyles = file ? " field--file" : "";
 
     return (
       <label
@@ -21,7 +25,7 @@ function withField<T extends HOCField = HOCField>(InputComponent: ComponentType<
         data-readonly={newProps.readOnly}
         data-disabled={newProps.disabled}
         data-password={newProps.type === "password"}
-        className={`input${fileStyles}`}
+        className={`field${fileStyles}`}
         {...datas}
       >
         <InputComponent
@@ -33,16 +37,20 @@ function withField<T extends HOCField = HOCField>(InputComponent: ComponentType<
           label={label}
         />
         <p
-          className="input__text"
+          className="field__text"
           title={meta.error}
           data-error={error}
-          data-error-msg={error ? ` | ${meta.error}` : null}
+          data-error-msg={error ? meta.error : null}
         >
           {label}
         </p>
       </label>
     );
   });
+
+  WithField.displayName = `withField(${InputComponent.displayName ?? InputComponent.name})`;
+
+  return WithField;
 }
 
 export default withField;

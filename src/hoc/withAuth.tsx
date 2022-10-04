@@ -1,30 +1,36 @@
-/* eslint-disable react/display-name */
-import { ComponentType } from "react";
 import { useLocation, Navigate } from "react-router-dom";
-import { HOCAuth, HOCAuthType } from "@interfaces";
+import config from "@config";
 import { useAppContext } from "@context";
 
-const authRoutes = ["/signin", "/signup", "/forgot", "/reset"];
+import type { ComponentType } from "react";
+import type { HOCAuthState, HOCAuth, HOCAuthType } from "@typing/hocs";
 
-function withAuth<T extends HOCAuth>(Component: ComponentType<T>, type: HOCAuthType = "page") {
-  return (props: Omit<T, keyof HOCAuth>) => {
-
+function withAuth<T extends HOCAuth = HOCAuth>(Component: ComponentType<T>, type: HOCAuthType = "page") {
+  const WithAuth = (props: Omit<T, keyof HOCAuth>) => {
     const { global: { user, sessionId } } = useAppContext();
-    const { pathname, search } = useLocation();
-    const authenticated = (JSON.stringify(user) === JSON.stringify({}) && sessionId === null);
+    const { pathname, search, state } = useLocation();
 
-    const unprotectedPages = authRoutes.some((page) => page === pathname);
+    const from = (state as HOCAuthState)?.from || "/";
+    const authenticated = !(JSON.stringify(user) === JSON.stringify({}) && sessionId === null);
 
-    if (type === "component") return <Component {...(props as T)} auth={authenticated} />;
+    const unprotectedPages = config.auth_pages.some((page) => page === pathname);
 
-    if (authenticated && unprotectedPages) return <Navigate to="/" replace />;
+    if (authenticated && unprotectedPages) return <Navigate to={from} replace />;
 
-    if ((!authenticated && unprotectedPages) || (authenticated && !unprotectedPages)) {
+    if (
+      (!authenticated && unprotectedPages)
+      || (authenticated && !unprotectedPages)
+      || (type === "component")
+    ) {
       return <Component {...(props as T)} auth={authenticated} />;
     }
 
-    return (<Navigate to="/signin" state={{ from: pathname + search }} replace />);
+    return (<Navigate to="/auth/signin" state={{ from: pathname + search }} replace />);
   };
+
+  WithAuth.displayName = `withAuth(${Component.displayName ?? Component.name})`;
+
+  return WithAuth;
 }
 
 export default withAuth;

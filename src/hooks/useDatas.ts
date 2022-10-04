@@ -1,5 +1,6 @@
 import { useMemo } from "react";
-import { ObjStrCommon } from "@interfaces";
+
+import type { ObjStrCommon } from "@typing/types";
 
 export default function useDatas(config: ObjStrCommon) {
   const datas: ObjStrCommon = useMemo(() => ({}), []);

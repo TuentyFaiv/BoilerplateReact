@@ -1,13 +1,15 @@
-import * as Yup from "yup";
-import { BootContact, ContactValues } from "@interfaces";
+import { object, string, boolean } from "yup";
 
-export const ContactSchema = (boot: BootContact) => Yup.object().shape({
-  name: Yup.string().required(boot.required),
-  phone: Yup.string().matches(/[0-9]/, boot.onlyNumbers).required(boot.required),
-  email: Yup.string().email(boot.email).required(boot.required),
-  message: Yup.string().max(200),
-  subject: Yup.string().max(80),
-  terms: Yup.boolean().oneOf([true], boot.requiredTerms)
+import type { BootContact } from "@typing/types";
+import type { ContactValues } from "@typing/services";
+
+export const ContactSchema = (boot: BootContact) => object().shape({
+  name: string().required(boot.required),
+  phone: string().matches(/[0-9]/, boot.onlyNumbers).required(boot.required),
+  email: string().email(boot.email).required(boot.required),
+  message: string().max(200),
+  subject: string().max(80),
+  terms: boolean().oneOf([true], boot.requiredTerms)
 });
 
 export const DEFAULT_CONTACT_VALUES: ContactValues = {

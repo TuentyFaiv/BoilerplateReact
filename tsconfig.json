@@ -40,8 +40,8 @@
       "@utils": [
         "common/utils.ts"
       ],
-      "@interfaces": [
-        "common/interfaces/index.ts"
+      "@typing/*": [
+        "common/typing/*"
       ],
       "@config": [
         "common/config.ts"

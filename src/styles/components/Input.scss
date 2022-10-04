@@ -1,6 +1,6 @@
 @import "../Mixins";
 
-.input {
+.field {
   $root: &;
   &--radio {}
   &--check {}

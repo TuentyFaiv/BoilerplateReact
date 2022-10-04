@@ -108,7 +108,7 @@ const configuration: Configuration = {
       filename: "./index.html"
     }),
     new AddAssetHtmlPlugin({
-      glob: path.resolve(paths.output, "./**/*.dll.js"),
+      filepath: path.resolve(paths.output, "./**/*.dll.js"),
       outputPath: "js",
       publicPath: "/js/"
     })

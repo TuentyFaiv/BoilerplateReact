@@ -1,5 +1,7 @@
 import { createContext, useContext, useReducer, useMemo } from "react";
-import { ContextApp, ContextAppProvider, ContextAppState } from "@interfaces";
+
+import type { ContextApp, ContextAppProvider, ContextAppState } from "@typing/contexts";
+
 import reducer from "./reducer";
 
 const AppContext = createContext<ContextApp>({
@@ -8,7 +10,7 @@ const AppContext = createContext<ContextApp>({
     user: {},
     onboarding: null
   },
-  dispatch: () => { }
+  dispatch: () => {}
 });
 
 export function AppProvider({ children }: ContextAppProvider) {
@@ -23,9 +25,7 @@ export function AppProvider({ children }: ContextAppProvider) {
 
   const [global, dispatch] = useReducer(reducer, initialState);
 
-  const contextValue = useMemo(() => ({
-    global, dispatch
-  }), [global]);
+  const contextValue = useMemo(() => ({ global, dispatch }), [global]);
 
   return (
     <AppContext.Provider value={contextValue}>

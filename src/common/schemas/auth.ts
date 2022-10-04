@@ -1,47 +1,57 @@
-import * as Yup from "yup";
-import { Boot, BootAuthSignup, ResetValues, SigninValues, SignupValues } from "@interfaces";
+import { object, string, boolean } from "yup";
 
-export const ForgotSchema = (boot: Boot) => Yup.object().shape({
-  email: Yup.string().required(boot.required)
+import type {
+  Boot,
+  BootAuthSignup
+} from "@typing/types";
+import type {
+  BodyForgot,
+  BodyReset,
+  BodySignin,
+  BodySignup
+} from "@typing/services";
+
+export const ForgotSchema = (boot: Boot) => object().shape({
+  email: string().required(boot.required)
 });
 
-export const DEFAULT_FORGOT_VALUES: Omit<SigninValues, "password"> = {
+export const DEFAULT_FORGOT_VALUES: BodyForgot = {
   email: ""
 };
 
-export const SigninSchema = (boot: Boot) => Yup.object().shape({
-  email: Yup.string().required(boot.required),
-  password: Yup.string().required(boot.required)
+export const SigninSchema = (boot: Boot) => object().shape({
+  email: string().required(boot.required),
+  password: string().required(boot.required)
 });
 
-export const DEFAULT_SIGNIN_VALUES: SigninValues = {
+export const DEFAULT_SIGNIN_VALUES: BodySignin = {
   email: "",
   password: ""
 };
 
-export const ResetSchema = (boot: Boot) => Yup.object().shape({
-  password: Yup.string().required(boot.required),
-  confirmPassword: Yup.string().required(boot.required)
+export const ResetSchema = (boot: Boot) => object().shape({
+  password: string().required(boot.required),
+  confirmPassword: string().required(boot.required)
 });
 
-export const DEFAULT_RESET_VALUES: ResetValues = {
+export const DEFAULT_RESET_VALUES: BodyReset = {
   password: "",
   confirmPassword: ""
 };
 
-export const SignupSchema = (boot: BootAuthSignup) => Yup.object().shape({
-  firstName: Yup.string().required(boot.required),
-  lastName: Yup.string().required(boot.required),
-  country: Yup.string().required(boot.required),
-  email: Yup.string().email(boot.email).required(boot.required),
-  phoneNumber: Yup.string().required(boot.required),
-  phoneCode: Yup.string().required(boot.required),
-  password: Yup.string().required(boot.required),
-  confirmPassword: Yup.string().required(boot.required),
-  terms: Yup.boolean().oneOf([true], boot.requiredTerms)
+export const SignupSchema = (boot: BootAuthSignup) => object().shape({
+  firstName: string().required(boot.required),
+  lastName: string().required(boot.required),
+  country: string().required(boot.required),
+  email: string().email(boot.email).required(boot.required),
+  phoneNumber: string().required(boot.required),
+  phoneCode: string().required(boot.required),
+  password: string().required(boot.required),
+  confirmPassword: string().required(boot.required),
+  terms: boolean().oneOf([true], boot.requiredTerms)
 });
 
-export const DEFAULT_SIGNUP_VALUES: SignupValues = {
+export const DEFAULT_SIGNUP_VALUES: BodySignup = {
   firstName: "",
   lastName: "",
   country: "",
