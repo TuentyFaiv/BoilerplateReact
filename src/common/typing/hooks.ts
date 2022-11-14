@@ -3,20 +3,20 @@ import type {
   Day,
   Month,
   Year,
-  ObjStrCustom,
-  SelectOption
+  ObjStrCustom
 } from "./types";
+import type { SelectOption } from "./interfaces";
 
 // HookModal
 export type HookModalParameters = {
-  query?: null | string;
+  query?: null | HookMediaParameters;
   element?: string;
 };
 export type HookModalFunc = (custom?: unknown) => void;
 export type HookModalReturn = [boolean, HookModalFunc];
 
 // HookMedia
-export type HookMediaParameters = null | string;
+export type HookMediaParameters = null | `(${"max" | "min"}-width: ${number}px)`;
 export type HookMediaReturn = boolean;
 
 // HookCountry
@@ -85,9 +85,6 @@ export type HookDatePickerReturn = {
 // HookMakeOptions
 export type HookMakeOptionsParam<T = ObjStrCustom<string>> = {
   options: T[];
-  keys: {
-    label: string;
-    value: string;
-  };
+  keys: SelectOption;
 };
 export type HookMakeOptionsReturn = SelectOption[];

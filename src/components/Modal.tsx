@@ -7,7 +7,7 @@ import GlobalConfig from "@config";
 import type { MouseEvent } from "react";
 import type { ModalProps } from "@typing/proptypes";
 
-import "@stylesComponents/Modal.scss";
+import "@cstyles/Modal.scss";
 
 // import Logo from "@icons/logo.svg";
 // import IconClose from "@icons/icon-close.svg";
@@ -59,7 +59,7 @@ function Modal({ children, title = "", config: conf = {}, open, onClose }: Modal
           {!config.close ? (
             <span>{t("modal-accept")}</span>
           ) : (
-            <img src="IconClose" alt={t("close")} className="modal__button-icon" />
+            <img src="IconClose" alt={t("close") ?? ""} className="modal__button-icon" />
           )}
         </button>
       </div>

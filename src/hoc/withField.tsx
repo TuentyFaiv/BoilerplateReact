@@ -6,7 +6,7 @@ import type { ComponentType, Ref } from "react";
 import type { FieldHookConfig } from "formik";
 import type { HOCField, HOCFieldProps } from "@typing/hocs";
 
-import "@stylesComponents/Input.scss";
+import "@cstyles/Input.scss";
 
 function withField<T extends HOCField = HOCField>(InputComponent: ComponentType<T>) {
   const WithField = forwardRef((props: Omit<T, keyof HOCField>, ref: Ref<HTMLLabelElement>) => {

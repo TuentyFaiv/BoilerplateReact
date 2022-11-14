@@ -1,6 +1,6 @@
 import type { LoaderSimpleProps } from "@typing/proptypes";
 
-import "@stylesComponents/Loader.scss";
+import "@cstyles/Loader.scss";
 
 const Simple = ({ msg }: LoaderSimpleProps) => (
   <div className="loader">

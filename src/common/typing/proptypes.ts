@@ -7,6 +7,7 @@ import type {
 } from "react";
 import type { FieldHookConfig } from "formik";
 import type { ObjStrCustom } from "./types";
+import type { SelectOption } from "./interfaces";
 import type { HookModalFunc } from "./hooks";
 import type {
   HOCAuth,
@@ -58,12 +59,6 @@ export type FileFieldProps = HOCFieldProps & HOCField & InputElement & {
   defaultValue?: string;
   profile?: boolean;
   onChange?: (values: File[] | File) => void;
-};
-
-type SelectOption = {
-  value: string;
-  label: string;
-  key?: string;
 };
 
 export type SelectFieldProps = Omit<HOCFieldProps, "file"> & HOCField & {

@@ -52,7 +52,7 @@ To use environment variables copy the file `.env.example` two times and rename o
 | @config           | Global config on src/common/config.ts                        | `import config from "@config";` |
 | @schemas          | All schemas for formik on src/common/schemas/index.ts        | `import { SigninSchema } from "@schemas";` |
 | @services         | All services for connections on src/common/services/index.ts | `import { signin } from "@services";` |
-| @stylesComponents | All styles for components on src/styles/components/*         | `import "@stylesComponents/Header.scss";` |
+| @cstyles | All styles for components on src/styles/components/*         | `import "@cstyles/Header.scss";` |
 | @stylesPages      | All styles for pages on src/styles/pages/*                   | `import "@stylesPages/Home.scss";` |
 | @styles           | Globals styles on src/styles/Globals.scss                    | `import "@styles";` |
 | @images           | All images on src/assets/images/*                            | `import Background from "@images/background.png";` | 

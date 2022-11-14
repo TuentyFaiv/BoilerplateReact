@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 
-import "@stylesComponents/Layout.scss";
+import "@cstyles/Layout.scss";
 
 import { Header, Footer } from "@components";
 
