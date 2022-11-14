@@ -6,7 +6,7 @@ import { I18nextProvider } from "react-i18next";
 import { AppProvider, ServiceProvider } from "@context";
 import i18n from "./i18n";
 
-import routes from "./Routes";
+import routes from "./routes";
 
 import "@styles";
 
