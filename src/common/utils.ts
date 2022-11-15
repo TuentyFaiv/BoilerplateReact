@@ -1,6 +1,7 @@
 /* eslint-disable max-classes-per-file */
 import swal from "sweetalert";
 
+import type { MouseEvent } from "react";
 import type { HttpConnectionError } from "@typing/contexts";
 
 export const formatter = new Intl.NumberFormat("en-US", {
@@ -16,6 +17,13 @@ export const formatter = new Intl.NumberFormat("en-US", {
 export const spacesInCalendar = 42;
 export const weekDays = 7;
 export const DEFAULT_FORMAT = "yyyy-MM-dd";
+
+export function stopPropagation<T extends MouseEvent = MouseEvent>(action?: (event?: T) => void) {
+  return (event: T) => {
+    event.stopPropagation();
+    return action?.(event);
+  };
+}
 
 // Errors
 export class CustomError extends Error {

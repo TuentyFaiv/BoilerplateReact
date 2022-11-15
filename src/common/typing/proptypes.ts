@@ -67,8 +67,14 @@ export type SelectFieldProps = Omit<HOCFieldProps, "file"> & HOCField & {
   options: SelectOption[];
   value?: string | null;
   withoutValue?: string;
+  multiple?: boolean;
   onSelect?: (value: unknown) => void;
 };
+
+export interface MultipleValueProps {
+  text: string;
+  onRemove: VoidFunction;
+}
 
 export interface LanguageProps {
   onClose?: VoidFunction;

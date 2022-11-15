@@ -3,6 +3,8 @@ import { withField } from "@hoc";
 import type { ChangeEvent } from "react";
 import type { FileFieldProps } from "@typing/proptypes";
 
+import { InputFile as Styles } from "@cstyles";
+
 const FileInput = ({ error, field, meta, helpers, ...props }: Omit<FileFieldProps, "data" | "file">) => {
   const { profile, defaultValue, alt, accept = "image/*", onChange, ...remainingProps } = props;
 
@@ -18,15 +20,13 @@ const FileInput = ({ error, field, meta, helpers, ...props }: Omit<FileFieldProp
 
   if (profile) {
     return (
-      <div className="field__profile">
-        <img
+      <Styles.Profile>
+        <Styles.ProfileImg
           src={value ? URL.createObjectURL(value) : defaultValue}
           alt={value?.name || alt}
-          className="field__profile-image"
         />
-        <input
+        <Styles.File
           id={props.id || props.name}
-          className="field__file"
           data-error={error}
           type="file"
           accept={accept}
@@ -34,14 +34,13 @@ const FileInput = ({ error, field, meta, helpers, ...props }: Omit<FileFieldProp
           onBlur={onBlur}
           {...remainingProps}
         />
-      </div>
+      </Styles.Profile>
     );
   }
 
   return (
-    <input
+    <Styles.File
       id={props.id || props.name}
-      className="field__file"
       data-error={error}
       type="file"
       accept={accept}

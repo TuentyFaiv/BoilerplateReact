@@ -1,38 +1,38 @@
 import { forwardRef } from "react";
-import { ErrorMessage, Field } from "formik";
 import { withDatasets } from "@hoc";
 
 import type { Ref } from "react";
 import type { InputProps } from "@typing/proptypes";
 
+import { Input as Styles, InputRadio as StyledR } from "@cstyles";
+
 const RadioInput = ({ children, name, checked, value, ...props }: Omit<InputProps, "data">, ref: Ref<HTMLLabelElement>) => (
-  <label
+  <Styles.Field
     ref={ref}
     htmlFor={props.id}
     data-checked={checked}
     data-payment={props.payment}
-    className="field field--radio"
+    radio
     onClick={props.onSelect}
     {...props.datas}
   >
-    <Field
+    <StyledR.Radio
       type="radio"
       id={props.id}
       name={name}
       value={value}
-      className="field__radio"
+      disabled={props.datas["data-disabled"]}
     />
-    <ErrorMessage
+    <StyledR.Error
       component="span"
       name={name}
-      className="field__radio-error"
     />
-    <span className="field__text field__text--radio">
+    <Styles.Text radio>
       {props.label}
       {children}
       {props.label2}
-    </span>
-  </label>
+    </Styles.Text>
+  </Styles.Field>
 );
 
 const Radio = forwardRef(RadioInput);

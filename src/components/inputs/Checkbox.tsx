@@ -1,40 +1,37 @@
 import { forwardRef } from "react";
-import { ErrorMessage, Field } from "formik";
 import { withDatasets } from "@hoc";
 
 import type { Ref } from "react";
 import type { InputProps } from "@typing/proptypes";
 
+import { Input as Styles, InputCheck as StylesC } from "@cstyles";
+
 const CheckboxInput = ({ children, label, label2 = null, ...props }: Omit<InputProps, "data">, ref: Ref<HTMLLabelElement>) => {
   const value = props.value ? { value: props.value } : {};
 
   return (
-    <label
+    <Styles.Field
       ref={ref}
       htmlFor={props.id}
       data-checked={props.checked}
-      className="field field--check"
       onClick={props.onSelect}
+      check
       {...props.datas}
     >
-      <Field
+      <StylesC.Checkbox
         type="checkbox"
         id={props.id}
         name={props.name}
-        className="field__checkbox"
+        disabled={props.datas["data-disabled"]}
         {...value}
       />
-      <ErrorMessage
-        component="span"
-        name={props.name}
-        className="field__checkbox-error"
-      />
-      <span className="field__text field__text--check">
+      <StylesC.Error component="span" name={props.name} />
+      <Styles.Text check>
         {label}
         {children}
         {label2}
-      </span>
-    </label>
+      </Styles.Text>
+    </Styles.Field>
   );
 };
 

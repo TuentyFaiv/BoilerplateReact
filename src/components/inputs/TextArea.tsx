@@ -1,13 +1,13 @@
-/* eslint-disable import/prefer-default-export */
 import { withField } from "@hoc";
 
 import type { AreaFieldProps } from "@typing/proptypes";
 
+import { InputArea as Styles } from "@cstyles";
+
 const Area = ({ error, field, meta, helpers, ...props }: Omit<AreaFieldProps, "data" | "file">) => (
-  <textarea
+  <Styles.Area
     id={props.id || props.name}
     data-error={error}
-    className="field__area"
     {...field}
     {...props}
   />

@@ -92,3 +92,25 @@ export type BackgroundImage = {
 export interface ScrollLinkI {
   active?: boolean;
 }
+
+export interface FieldI {
+  check?: boolean;
+  radio?: boolean;
+}
+
+export interface TextI {
+  check?: boolean;
+  radio?: boolean;
+}
+
+export interface MultipleRemoveI {
+  all?: boolean;
+}
+
+export interface SelectValueI {
+  hasValue: boolean;
+}
+
+export interface SelectOptionI {
+  disabled?: boolean;
+}
