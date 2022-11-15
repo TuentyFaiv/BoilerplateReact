@@ -1,3 +1,5 @@
+import type { FormikHelpers } from "formik";
+
 // Authentication
 export type BodySignin = {
   email: string;
@@ -37,3 +39,6 @@ export interface ContactValues {
   subject: string;
   terms: boolean;
 }
+
+// SubmitForm
+export type Submit<T> = (values: T, actions: FormikHelpers<T>) => void;
