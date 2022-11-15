@@ -1,3 +1,2 @@
 export { default as useAuthService } from "./auth";
-
-export const Other = null;
+export { default as submitForm } from "./general";

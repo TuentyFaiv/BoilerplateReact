@@ -2,14 +2,14 @@ import { withPortal } from "@hoc";
 
 import type { LoaderPageProps } from "@typing/proptypes";
 
-import "@cstyles/Loader.scss";
+import { Loader as Styles } from "@cstyles";
 
 import { LoaderSimple } from "@components";
 
 const Page = ({ msg = "" }: LoaderPageProps) => (
-  <div className="loader-page">
+  <Styles.Page>
     <LoaderSimple msg={msg} />
-  </div>
+  </Styles.Page>
 );
 
 Page.displayName = "LoaderPage";

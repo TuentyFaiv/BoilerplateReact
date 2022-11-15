@@ -1,9 +1,9 @@
-import "@cstyles/Header.scss";
+import { Header as Styles } from "@cstyles";
 
 export default function Header() {
   return (
-    <header className="header">
-      <p className="header__title">Header</p>
-    </header>
+    <Styles.Container>
+      <Styles.Title>Header</Styles.Title>
+    </Styles.Container>
   );
 }

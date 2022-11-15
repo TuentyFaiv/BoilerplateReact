@@ -66,14 +66,17 @@
       "@pages/*": [
         "src/pages/*"
       ],
-      "@cstyles/*": [
-        "src/styles/components/*"
+      "@cstyles": [
+        "src/styles/components/index.ts"
       ],
-      "@pstyles/*": [
-        "src/styles/pages/*"
+      "@pstyles": [
+        "src/styles/pages/index.ts"
+      ],
+      "@mixins": [
+        "src/styles/Mixins.ts"
       ],
       "@styles": [
-        "src/styles/Globals.scss"
+        "src/styles/Globals.ts"
       ],
     }
   },

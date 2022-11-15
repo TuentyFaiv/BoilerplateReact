@@ -4,7 +4,7 @@ import config from "@config";
 
 import type { LanguageProps } from "@typing/proptypes";
 
-import "@cstyles/Language.scss";
+import { Language as Styles } from "@cstyles";
 
 export default function Language({ onClose }: LanguageProps) {
   const { i18n } = useTranslation("translation", { useSuspense: false });
@@ -12,8 +12,7 @@ export default function Language({ onClose }: LanguageProps) {
   const lang = `${i18n.language}`.split("-")[0];
 
   return (
-    <span
-      className="lang"
+    <Styles.Container
       onClick={toggleModal}
       role="button"
       tabIndex={0}
@@ -21,22 +20,21 @@ export default function Language({ onClose }: LanguageProps) {
     >
       {lang}
       {modal && (
-        <span className="lang__options">
+        <Styles.Options>
           {config.i18n_langs.map((language) => (
-            <button
+            <Styles.Option
               key={language}
               type="button"
-              className="lang__option"
               onClick={() => {
                 i18n.changeLanguage(language);
                 if (onClose) onClose();
               }}
             >
               {`${language}`.split("-")[0]}
-            </button>
+            </Styles.Option>
           ))}
-        </span>
+        </Styles.Options>
       )}
-    </span>
+    </Styles.Container>
   );
 }

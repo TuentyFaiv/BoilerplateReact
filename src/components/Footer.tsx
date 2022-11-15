@@ -1,9 +1,9 @@
-import "@cstyles/Footer.scss";
+import { Footer as Styles } from "@cstyles";
 
 export default function Footer() {
   return (
-    <footer className="footer">
-      <p className="footer__title">Footer</p>
-    </footer>
+    <Styles.Container>
+      <Styles.Title>Footer</Styles.Title>
+    </Styles.Container>
   );
 }

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 
-import "@cstyles/Layout.scss";
+import { Layout as Styles } from "@cstyles";
 
 import { Header, Footer } from "@components";
 
@@ -15,9 +15,9 @@ export default function Layout() {
   return (
     <>
       <Header />
-      <main className="layout">
+      <Styles.Main>
         <Outlet />
-      </main>
+      </Styles.Main>
       <Footer />
     </>
   );

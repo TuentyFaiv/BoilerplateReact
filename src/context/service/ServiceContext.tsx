@@ -10,7 +10,7 @@ const ServiceContext = createContext<ContextService>({
 export function ServiceProvider({ children }: ContextServiceProvider) {
   const { global: { sessionId } } = useAppContext();
 
-  const api = useMemo(() => new Http(sessionId ?? ""), [sessionId]);
+  const api = useMemo(() => Http.create(sessionId ?? ""), [sessionId]);
 
   const value = useMemo(() => ({ api }), [api]);
 

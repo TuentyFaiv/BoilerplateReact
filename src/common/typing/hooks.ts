@@ -6,17 +6,18 @@ import type {
   ObjStrCustom
 } from "./types";
 import type { SelectOption } from "./interfaces";
+import type { Media } from "./styles";
 
 // HookModal
 export type HookModalParameters = {
-  query?: null | HookMediaParameters;
+  query?: HookMediaParameters;
   element?: string;
 };
 export type HookModalFunc = (custom?: unknown) => void;
 export type HookModalReturn = [boolean, HookModalFunc];
 
 // HookMedia
-export type HookMediaParameters = null | `(${"max" | "min"}-width: ${number}px)`;
+export type HookMediaParameters = null | `(${Media})`;
 export type HookMediaReturn = boolean;
 
 // HookCountry

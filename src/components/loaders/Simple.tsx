@@ -1,11 +1,11 @@
 import type { LoaderSimpleProps } from "@typing/proptypes";
 
-import "@cstyles/Loader.scss";
+import { Loader as Styles } from "@cstyles";
 
 const Simple = ({ msg }: LoaderSimpleProps) => (
-  <div className="loader">
+  <Styles.Simple>
     {msg}
-  </div>
+  </Styles.Simple>
 );
 
 Simple.displayName = "LoaderSimple";

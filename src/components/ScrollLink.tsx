@@ -1,13 +1,12 @@
-import { Link, useResolvedPath } from "react-router-dom";
+import { useResolvedPath } from "react-router-dom";
 
 import type { ScrollLinkProps } from "@typing/proptypes";
 
+import { ScrollLink as Styles } from "@cstyles";
+
 const ScrollLink = ({ to, text, compareHash, ...props }: ScrollLinkProps) => {
   const { hash } = useResolvedPath(to);
-  const activeClassName = (hash === compareHash)
-    ? `${props.className} ${props.className}--active`
-    : `${props.className}`;
-  const className = compareHash ? activeClassName : props.className;
+  const active = (hash === compareHash);
 
   const handleScroll = () => {
     const section = document.getElementById(hash.slice(1));
@@ -15,14 +14,14 @@ const ScrollLink = ({ to, text, compareHash, ...props }: ScrollLinkProps) => {
   };
 
   return (
-    <Link
+    <Styles.ScrollLink
       to={`/${to}`}
-      className={className}
+      active={active}
       onClick={handleScroll}
     >
       {props.span ? <span>{text}</span> : text}
       {props.children}
-    </Link>
+    </Styles.ScrollLink>
   );
 };
 

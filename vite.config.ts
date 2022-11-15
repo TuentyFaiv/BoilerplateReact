@@ -23,9 +23,10 @@ export default defineConfig({
       "@components": path.resolve("src/components/index.ts"),
       "@contianers": path.resolve("src/contianers/index.ts"),
       "@pages": path.resolve("src/pages/"),
-      "@pstyles": path.resolve("src/styles/pages/"),
-      "@cstyles": path.resolve("src/styles/components/"),
-      "@styles": path.resolve("src/styles/Globals.scss")
+      "@pstyles": path.resolve("src/styles/pages/index.ts"),
+      "@cstyles": path.resolve("src/styles/components/index.ts"),
+      "@mixins": path.resolve("src/styles/Mixins.ts"),
+      "@styles": path.resolve("src/styles/Globals.ts")
     }
   }
 });

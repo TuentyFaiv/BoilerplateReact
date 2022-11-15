@@ -1,12 +1,15 @@
 import { useTranslation } from "react-i18next";
-import { Formik, Form, FormikHelpers } from "formik";
-import swal from "sweetalert";
+import { Formik } from "formik";
 import { SigninSchema, DEFAULT_SIGNIN_VALUES } from "@schemas";
+import { submitForm } from "@services";
 // import { useAuthService } from "@services"; // Service Auth
 // import { useAppContext } from "@context";
 // import { Actions } from "@typing/enums";
 
 import type { BodySignin } from "@typing/services";
+import type { Boot } from "@typing/types";
+
+import { Auth as Styles } from "@pstyles";
 
 import { Input } from "@components";
 
@@ -15,57 +18,45 @@ export default function SigninForm() {
   // const { dispatch } = useAppContext();
   // const { signin } = useAuthService();
 
-  const formTranslations = {
+  const boot: Boot = {
     required: t("required")
   };
 
-  const handleSubmit = async (values: BodySignin, actions: FormikHelpers<BodySignin>) => {
-    try {
-      actions.setSubmitting(true);
+  const handleSubmit = submitForm<BodySignin>(async () => {
+    // Here should put the signin() with await
 
-      // Here should put the signin() with await
+    // actions.resetForm({ values: DEFAULT_SIGNIN_VALUES });
 
-      // actions.resetForm({ values: DEFAULT_SIGNIN_VALUES });
-
-      // dispatch({ type: Actions.SIGNIN }); // Add payload property to signin
-    } catch (error) {
-      let message = "¡Oh no!";
-      if (error instanceof Error) message = error.message;
-
-      swal("Error!", t(message, { ns: "errors" }) || message, "error");
-    } finally {
-      actions.setSubmitting(false);
-    }
-  };
+    // dispatch({ type: Actions.SIGNIN }); // Add payload property to signin
+  }, DEFAULT_SIGNIN_VALUES);
 
   return (
     <Formik
       initialValues={DEFAULT_SIGNIN_VALUES}
-      validationSchema={SigninSchema(formTranslations)}
+      validationSchema={SigninSchema(boot)}
       onSubmit={handleSubmit}
     >
       {({ isSubmitting }) => (
-        <Form className="auth__form">
+        <Styles.Form>
           <Input
             label={t("email")}
             name="email"
             type="text"
-            placeholder={t("email")}
+            placeholder={t("email") ?? ""}
           />
           <Input
             label={t("password")}
             name="password"
             type="password"
-            placeholder={t("password")}
+            placeholder={t("password") ?? ""}
           />
-          <button
+          <Styles.Submit
             type="submit"
-            className="auth__form-submit"
             disabled={(isSubmitting)}
           >
             {t("signin-submit")}
-          </button>
-        </Form>
+          </Styles.Submit>
+        </Styles.Form>
       )}
     </Formik>
   );

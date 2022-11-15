@@ -1,4 +1,6 @@
 /* eslint-disable max-classes-per-file */
+import swal from "sweetalert";
+
 import type { HttpConnectionError } from "@typing/contexts";
 
 export const formatter = new Intl.NumberFormat("en-US", {
@@ -14,6 +16,23 @@ export const formatter = new Intl.NumberFormat("en-US", {
 export const spacesInCalendar = 42;
 export const weekDays = 7;
 export const DEFAULT_FORMAT = "yyyy-MM-dd";
+
+// Errors
+export class CustomError extends Error {
+  date: Date;
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  constructor(name = "Error", ...params: any[]) {
+    super(...params);
+
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, CustomError);
+    }
+
+    this.name = name;
+    this.date = new Date();
+  }
+}
 
 export class PaymentError extends Error {
   title: string;
@@ -55,4 +74,31 @@ export class ServiceError extends Error {
   }
 
   viewData = () => (this.data);
+}
+
+export function throwError(error: unknown) {
+  let message = "¡Oh no!";
+  let name = "Error";
+  if (error instanceof Error) {
+    message = error.message;
+    name = error.name;
+  }
+  if (error instanceof ServiceError) {
+    message = error.viewData().message;
+    name = error.name;
+  }
+
+  if (!name.includes("AbortError")) {
+    swal("Error!", message, "error");
+  }
+
+  if (error instanceof ServiceError) {
+    return new ServiceError(error.viewData());
+  }
+
+  if (name.includes("AbortError")) {
+    return new CustomError(name, message);
+  }
+
+  return new Error(message);
 }
