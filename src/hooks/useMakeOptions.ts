@@ -1,5 +1,6 @@
-import type { ObjStrCustom, SelectOption } from "@typing/types";
 import type { HookMakeOptionsParam, HookMakeOptionsReturn } from "@typing/hooks";
+import type { SelectOption } from "@typing/interfaces";
+import type { ObjStrCustom } from "@typing/types";
 
 export default function useMakeOptions<T extends ObjStrCustom<string>>({
   options,
