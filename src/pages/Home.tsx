@@ -1,13 +1,13 @@
 import { useTranslation } from "react-i18next";
 
-import "@pstyles/Home.scss";
+import { Home as Styles } from "@pstyles";
 
 export default function Home() {
   const { t } = useTranslation();
 
   return (
-    <div className="home">
-      <h1 className="home__title">{t("home-title")}</h1>
-    </div>
+    <Styles.Section>
+      <Styles.Title>{t("home-title")}</Styles.Title>
+    </Styles.Section>
   );
 }
