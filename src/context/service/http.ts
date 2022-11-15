@@ -14,16 +14,26 @@ import type {
 } from "@typing/contexts";
 
 export default class Http {
+  static instance: Http | null = null;
+
   #api: string;
   #api_local: string;
   #token?: string;
 
-  constructor(token?: string) {
+  private constructor(token?: string) {
     this.#api = globalConfig.api;
     this.#api_local = globalConfig.api_local;
     this.#token = token;
 
     Object.freeze(this);
+  }
+
+  static create(token?: string) {
+    if (Http.instance === null) {
+      Http.instance = new Http(token);
+    }
+
+    return Http.instance;
   }
 
   async #connection<T, R>(config: HTTPConfigConnection<T>): Promise<HTTPConnectionReturn<R>> {
@@ -116,6 +126,7 @@ export default class Http {
   }
 
   #log(httpLog: HTTPLog) {
+    // eslint-disable-next-line no-console
     console.log({
       ...httpLog,
       apis: {

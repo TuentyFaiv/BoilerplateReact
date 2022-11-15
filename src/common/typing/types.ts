@@ -23,11 +23,6 @@ export type BootContact = Boot & BootAuthSignup & {
   onlyNumbers: string;
 };
 
-export type SelectOption = {
-  label: string;
-  value: string;
-};
-
 export type Day = {
   key: number;
   name: string;

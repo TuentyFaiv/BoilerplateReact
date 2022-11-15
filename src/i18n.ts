@@ -9,7 +9,7 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    debug: process.env.DEBUG_I18NEXT === "true",
+    debug: config.i18n_debug === "true",
     fallbackLng: config.i18n_fallback_lang,
     supportedLngs: config.i18n_langs,
     ns: [

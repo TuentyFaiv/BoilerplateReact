@@ -2,7 +2,7 @@ import { withPortal } from "@hoc";
 
 import type { LoaderPageProps } from "@typing/proptypes";
 
-import "@stylesComponents/Loader.scss";
+import "@cstyles/Loader.scss";
 
 import { LoaderSimple } from "@components";
 

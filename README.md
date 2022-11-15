@@ -4,7 +4,7 @@
   <img src="https://img.shields.io/badge/react%20router%20-%23f44250.svg?&style=for-the-badge&logo=reactrouter&logoColor=white" alt="React Router badge" />
   <img src="https://img.shields.io/badge/i18next%20-%2326a69a.svg?&style=for-the-badge&logo=i18next&logoColor=white" alt="I18next badge" />
   <img src="https://img.shields.io/badge/sass%20-%23bf4080.svg?&style=for-the-badge&logo=sass&logoColor=white" alt="Sass badge" />
-  <img src="https://img.shields.io/badge/webpack%20-%235299c8.svg?&style=for-the-badge&logo=webpack&logoColor=white" alt="Webpack badge" />
+  <img src="https://img.shields.io/badge/vite%20-%23BD34FE.svg?&style=for-the-badge&logo=vite&logoColor=white" alt="Vite badge" />
   <img src="https://img.shields.io/badge/typescript%20-%233178C6.svg?&style=for-the-badge&logo=typescript&logoColor=white" alt="Typescript badge" />
   <img src="https://img.shields.io/badge/eslint%20-%234b32c3.svg?&style=for-the-badge&logo=eslint&logoColor=white" alt="ESLint badge" />
   <img src="https://img.shields.io/badge/formik%20-%231d4ed8.svg?&style=for-the-badge&logo=formik&logoColor=white" alt="Formik badge" />
@@ -15,25 +15,13 @@
 This template is made in Typescript, React for UI, i18n for the locales, Formik for the logic in forms and Yup for validations, with Sweetalert and React Router, SASS for the styles and Webpack for the bundle
 
 ### Scripts:
-- `npm install` to install all dependencies
-  ### After install:
-  for development environment run the following commands
-
-  **Step 1**
-  - Linux: `source config/scripts/.venv/bin/activate`
-  - Windows: `config\scripts\.venv\Scripts\activate`
-
-  **Step 2**
-
-  `pip3 install -r ./config/scripts/requirements.txt `
-
-- `npm start` for development mode and start with the creation of a new universe
-- `npm run build` to make the build of vendor and project
-- `npm run build:vendor` to build only the vendor
-- `npm run build:project` to build only the project
+- `pnpm install` to install all dependencies
+- `pnpm start` for development mode and start with the creation of a new universe
+- `pnpm build` to make the build of vendor and project
+- `pnpm preview`
 
 ## Environment variables
-To use environment variables copy the file `.env.example` two times and rename one as `.env.development` and the other as `.env`, the first is for development mode and the second for production mode.
+To use environment variables copy the file `.env.example` two times and rename one as `.env.development.local` and the other as `.env.production.local`, the first is for development mode and the second for production mode.
 
 > ### Note:
 > Never put variables in `.env.example`
@@ -52,8 +40,8 @@ To use environment variables copy the file `.env.example` two times and rename o
 | @config           | Global config on src/common/config.ts                        | `import config from "@config";` |
 | @schemas          | All schemas for formik on src/common/schemas/index.ts        | `import { SigninSchema } from "@schemas";` |
 | @services         | All services for connections on src/common/services/index.ts | `import { signin } from "@services";` |
-| @stylesComponents | All styles for components on src/styles/components/*         | `import "@stylesComponents/Header.scss";` |
-| @stylesPages      | All styles for pages on src/styles/pages/*                   | `import "@stylesPages/Home.scss";` |
+| @cstyles | All styles for components on src/styles/components/*         | `import "@cstyles/Header.scss";` |
+| @stylesPages      | All styles for pages on src/styles/pages/*                   | `import "@pstyles/Home.scss";` |
 | @styles           | Globals styles on src/styles/Globals.scss                    | `import "@styles";` |
 | @images           | All images on src/assets/images/*                            | `import Background from "@images/background.png";` | 
 | @icons            | All icons on src/assets/images/icons/*                       | `import Logo from "@icons/logo.svg";` |
@@ -64,12 +52,11 @@ To use environment variables copy the file `.env.example` two times and rename o
 ## Folder architecture
 
 > - public/
+>   - locales/
+>     - lang/namespace.json // Example: es/translation.json
 > - src/
 >   - common/
->     - locales/
->       - lang/namespace.json // Example: es/translation.json
->     - interfaces/
->       - index.ts
+>     - typing/
 >       - interface.ts
 >       - proptypes.ts
 >       - types.ts
@@ -91,6 +78,9 @@ To use environment variables copy the file `.env.example` two times and rename o
 >     - app/
 >       - AppContext.tsx
 >       - reducer.ts
+>     - service/
+>       - ServiceContext.tsx
+>       - http.ts
 >     - index.ts
 >   - hoc/
 >     - withCustomHoc.tsx
@@ -111,7 +101,6 @@ To use environment variables copy the file `.env.example` two times and rename o
 >       - Header.scss
 >     - _Mixins.scss
 >     - Globals.scss
->   - App.tsx
->   - custom.d.tsx
 >   - i18n.ts
->   - index.ts
+>   - main.ts
+>   - routes.tsx

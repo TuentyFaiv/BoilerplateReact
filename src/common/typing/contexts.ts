@@ -74,7 +74,7 @@ type HTTPConfigOptionalMethods = {
   secure?: boolean;
 };
 
-export type HTTPConfigGet = Omit<HTTPConfigConnection<unknown>, "method" | "body" | "query" | "secure">
+export type HTTPConfigGet = Omit<HTTPConfigConnection<never>, "method" | "body" | "query" | "secure">
 & HTTPConfigOptionalMethods;
 export type HTTPConfigMethods<T> = Omit<HTTPConfigConnection<T>, "method" | "query" | "secure">
 & HTTPConfigOptionalMethods;
