@@ -1,26 +1,61 @@
 import type { Dispatch, ReactNode } from "react";
 import type { Http } from "@context";
 import type {
+  ActiveDLocalAction,
+  ActiveOpenPayAction,
+  AddToCartAction,
   ChangeOnboardingAction,
+  ClearCartAction,
+  DeactiveDLocalAction,
+  DeactiveOpenPayAction,
+  ExchangeCartAction,
+  SetMethodCartAction,
+  SetPspCartAction,
   SigninAction,
   SignoutAction,
   UpdateProfileImageAction,
   UpdateUserAction
 } from "./actions";
+import type { ReturnSignin } from "./services";
+import type {
+  DocumentFields,
+  Methods,
+  ObjCountry,
+  DLocal,
+  Openpay
+} from "./payment";
 
-import { HTTPMetod, HTTPContentType, Onboarding } from "./enums";
+import {
+  HTTPMetod,
+  HTTPContentType,
+  Onboarding,
+  PSP,
+  Method,
+  Currencies,
+  OpenpayErrors
+} from "./enums";
+
+export type ContextAppUser = Omit<ReturnSignin, "sessionId" | "profileImage"> & {
+  profileImage: string;
+};
 
 export type ContextAppState = {
   sessionId: string | null;
-  user: any;
+  user: ContextAppUser;
   onboarding: null | Onboarding;
+  openPay: null | Openpay;
+  dlocal: null | DLocal;
 };
 
 export type ContextAppReducerAction = SigninAction
 | SignoutAction
 | ChangeOnboardingAction
 | UpdateUserAction
-| UpdateProfileImageAction;
+| UpdateProfileImageAction
+| ActiveOpenPayAction
+| DeactiveOpenPayAction
+| ActiveDLocalAction
+| DeactiveDLocalAction;
 
 export type ContextApp = {
   global: ContextAppState;
@@ -66,6 +101,7 @@ export type HTTPConfigConnection<T> = {
   signal?: AbortSignal;
   lang?: string;
   local?: boolean;
+  punkaso?: boolean;
   log?: boolean;
 };
 
@@ -74,7 +110,7 @@ type HTTPConfigOptionalMethods = {
   secure?: boolean;
 };
 
-export type HTTPConfigGet = Omit<HTTPConfigConnection<never>, "method" | "body" | "query" | "secure">
+export type HTTPConfigGet = Omit<HTTPConfigConnection<unknown>, "method" | "body" | "query" | "secure">
 & HTTPConfigOptionalMethods;
 export type HTTPConfigMethods<T> = Omit<HTTPConfigConnection<T>, "method" | "query" | "secure">
 & HTTPConfigOptionalMethods;
@@ -98,3 +134,41 @@ export type HTTPBodyFiles<T> = {
   files?: File[];
   file: File;
 } & T & Record<string, never>;
+
+export type ContextCartState = {
+  amount: number;
+  currency: Currencies;
+  description: string;
+  idPsp: PSP;
+  namePsp: string;
+  method: Method;
+  country: ContextCountryCart;
+  exchangeAmount: number;
+  exchangeCurrency: Currencies;
+};
+
+export type ContextCartError = {
+  code: null | number;
+  psp_code: null | number | OpenpayErrors;
+  psp_name: null | PSP;
+  message: null | string;
+};
+
+export type ContextCountryCart = keyof ObjCountry<Currencies[] | DocumentFields | Methods>;
+
+export type ContextCartReducerAction = AddToCartAction
+| SetPspCartAction
+| ExchangeCartAction
+| SetMethodCartAction
+| ClearCartAction;
+
+export type ContextCart = {
+  cart: ContextCartState;
+  error: ContextCartError;
+  changeError: (error: ContextCartError, clean?: boolean) => void;
+  dispatch: Dispatch<ContextCartReducerAction>;
+};
+
+export type ContextCartProvider = {
+  children: ReactNode;
+};

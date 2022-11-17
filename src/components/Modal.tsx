@@ -7,18 +7,20 @@ import GlobalConfig from "@config";
 import type { MouseEvent } from "react";
 import type { ModalProps } from "@typing/proptypes";
 
-import "@cstyles/Modal.scss";
+import "@stylesComponents/Modal.scss";
 
-// import Logo from "@icons/logo.svg";
-// import IconClose from "@icons/icon-close.svg";
+import IconClose from "@icons/close-icon.svg";
 
 const DEFAULT_CONFIG = {
   small: false,
+  blue: false,
   white: false,
   center: false,
   close: false,
   scroll: false,
-  header: true
+  header: true,
+  psp: false,
+  error: false
 };
 
 function Modal({ children, title = "", config: conf = {}, open, onClose }: ModalProps) {
@@ -59,7 +61,7 @@ function Modal({ children, title = "", config: conf = {}, open, onClose }: Modal
           {!config.close ? (
             <span>{t("modal-accept")}</span>
           ) : (
-            <img src="IconClose" alt={t("close") ?? ""} className="modal__button-icon" />
+            <img src={IconClose} alt={t("close")} className="modal__button-icon" />
           )}
         </button>
       </div>

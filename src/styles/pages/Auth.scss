@@ -1,0 +1,93 @@
+@import "../Mixins";
+
+$bg: url("@images/bg-auth.png");
+
+.auth {
+  @include background-img($bg);
+  width: 100%;
+  padding: 50px 0;
+  &__content {
+    @include content();
+    @include flex(center);
+    min-height: calc(100vh - 250px);
+    flex-direction: column;
+  }
+  &__title {
+    @include text(5rem, 800, 5.7rem);
+    margin-bottom: 50px;
+    color: var(--neutral-color);
+  }
+  &__form {
+    @include flex(center, 22px);
+    width: 100%;
+    flex-direction: column;
+  }
+  &__form-terms {
+    width: 100%;
+    max-width: 809px;
+    margin-bottom: 35px;
+    & > label.field.field--check {
+      margin-bottom: 0;
+    }
+  }
+  &__form-terms-button {
+    @include text(1.5rem, bold, 1.8rem);
+    margin-left: 8px;
+    color: var(--neutral-color);
+    border-bottom: 1px solid var(--neutral-color);
+    &:active {
+      transform: translateY(0);
+    }
+  }
+  &__form-grid {
+    @include grid(1fr 1fr, 22px);
+    width: 100%;
+    max-width: 809px;
+    margin-bottom: 22px;
+  }
+  &__form-row {
+    @include flex(center);
+    width: 100%;
+    max-width: 392px;
+    & label.field {
+      &:first-child {
+        flex: 1.7;
+        input.field__input {
+          border-radius: 24px 0 0 24px;
+        }
+      }
+      &:last-child {
+        flex: 5;
+        input.field__input {
+          border-left: 1px solid var(--neutral-two-color);
+          border-radius: 0 24px 24px 0;
+        }
+      }
+    }
+  }
+  &__forgot,
+  &__alredy,
+  &__alredy-link {
+    @include text(1.6rem, normal, 2.2rem);
+    width: 100%;
+    max-width: 392px;
+    color: var(--neutral-color);
+    text-decoration: none;
+  }
+  &__alredy {
+    margin-top: 30px;
+    text-align: center;
+  }
+  &__forgot {
+    margin-top: -12px;
+    margin-bottom: 30px;
+    margin-right: 25px;
+    text-align: end;
+  }
+  &__alredy-link {
+    font-weight: 800;
+    margin-left: 5px;
+  }
+}
+
+@import "./responsive/Auth";

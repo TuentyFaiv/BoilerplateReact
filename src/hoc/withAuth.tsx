@@ -1,5 +1,6 @@
 import { useLocation, Navigate } from "react-router-dom";
 import config from "@config";
+import { DEFAULT_USER } from "@utils";
 import { useAppContext } from "@context";
 
 import type { ComponentType } from "react";
@@ -11,11 +12,13 @@ function withAuth<T extends HOCAuth = HOCAuth>(Component: ComponentType<T>, type
     const { pathname, search, state } = useLocation();
 
     const from = (state as HOCAuthState)?.from || "/";
-    const authenticated = !(JSON.stringify(user) === JSON.stringify({}) && sessionId === null);
+    const authenticated = !(JSON.stringify(user) === JSON.stringify(DEFAULT_USER) && sessionId === null);
 
     const unprotectedPages = config.auth_pages.some((page) => page === pathname);
 
-    if (authenticated && unprotectedPages) return <Navigate to={from} replace />;
+    const toPaymentValidation = from.includes("payment") ? `${from}${user.tpId}` : from;
+
+    if (authenticated && unprotectedPages) return <Navigate to={toPaymentValidation} replace />;
 
     if (
       (!authenticated && unprotectedPages)
@@ -25,7 +28,7 @@ function withAuth<T extends HOCAuth = HOCAuth>(Component: ComponentType<T>, type
       return <Component {...(props as T)} auth={authenticated} />;
     }
 
-    return (<Navigate to="/auth/signin" state={{ from: pathname + search }} replace />);
+    return (<Navigate to="/auth/signin" state={{ from: `${pathname}${search}` }} replace />);
   };
 
   WithAuth.displayName = `withAuth(${Component.displayName ?? Component.name})`;

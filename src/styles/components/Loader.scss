@@ -1,7 +1,53 @@
 @import "../Mixins";
 
-.loader {}
+.loader {
+  @include flex(center);
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.54);
+  flex-direction: column;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  &__spinner {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+    &:after {
+      content: " ";
+      display: block;
+      width: 64px;
+      height: 64px;
+      margin: 8px;
+      border-radius: 50%;
+      border: 6px solid  #89d665;
+      border-color: #89d665 transparent  #89d665 transparent;
+      animation: loader-animation 1.2s linear infinite;
+    }
+  }
+  &__text {
+    @include text(2rem, normal, 24px);
+    padding: 0 16px;
+  }
+}
 
-.loader-page {}
+.loader-page {
+  @include flex(center);
+  background-color: rgba(0, 0, 0, 0.54);
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+}
+
+@keyframes loader-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 
 @import "./responsive/Loader";

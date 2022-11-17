@@ -4,7 +4,7 @@ import config from "@config";
 
 import type { LanguageProps } from "@typing/proptypes";
 
-import "@cstyles/Language.scss";
+import "@stylesComponents/Language.scss";
 
 export default function Language({ onClose }: LanguageProps) {
   const { i18n } = useTranslation("translation", { useSuspense: false });

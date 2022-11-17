@@ -2,11 +2,240 @@
 
 .modal {
   $root: &;
-  &__title {}
-  &__header {}
-  &__container {}
-  &__content {}
-  &__button {}
+  @include flex(center);
+  position: fixed;
+  padding: 0 20px;
+  background-color: rgba(0, 0, 0, .4);
+  inset: 0;
+  z-index: 20;
+  &[data-blue="true"] {
+    #{$root}__container {
+      background-color: #f1f6fd;
+    }
+  }
+  &[data-scroll="true"] {
+    #{$root}__content {
+      padding-top: 15px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      &::-webkit-scrollbar {
+        width: 10px;
+        background-color: var(--neutral-color);
+      }
+      &::-webkit-scrollbar-thumb {
+        width: 10px;
+        background: var(--primary-color);
+      }
+    }
+  }
+  &[data-center="true"] {
+    #{$root}__content {
+      @include flex(center, 20px);
+      flex-direction: column;
+    }
+  }
+  &[data-close="true"] {
+    #{$root}__container {
+      position: relative;
+    }
+    #{$root}__button {
+      position: absolute;
+      width: 35px;
+      height: 35px;
+      padding: 5px;
+      top: 10px;
+      right: 10px;
+    }
+    #{$root}__content {
+      min-height: calc(70vh - 110px);
+      max-height: calc(70vh - 110px);
+      margin-bottom: 0;
+    }
+    &[data-psp="true"] {
+      #{$root}__content {
+        min-height: calc(85vh - 110px);
+        max-height: calc(85vh - 110px);
+      }
+    }
+  }
+  &[data-psp="true"] {
+    #{$root}__container {
+      max-width: 1200px;
+    }
+    #{$root}__content {
+      min-height: calc(85vh - 194px);
+      max-height: calc(85vh - 194px);
+    }
+  }
+  &[data-error="true"] {
+    #{$root}__container {
+      min-height: 25vh;
+    }
+    #{$root}__content {
+      min-height: auto;
+      text-align: center;
+    }
+  }
+  &__container {
+    @include content(810px);
+    @include flex(space-between);
+    flex-direction: column;
+    min-height: 70vh;
+    padding: 30px;
+    background-color: var(--neutral-color);
+    border-radius: 24px;
+  }
+  &__content {
+    width: 100%;
+    min-height: calc(70vh - 194px);
+    max-height: calc(70vh - 194px);
+    margin-bottom: 20px;
+    & p,
+    & h3 {
+      white-space: pre-wrap;
+    }
+    & :is(p, h1, h2, h3, h4, h5, h6):not(.payment__subtitle):not(.payment__text) {
+      margin-bottom: 20px;
+    }
+    & p > span > span.modal__paragraph-bold {
+      font-weight: bold;
+    }
+    & #{$root}__form-price {
+      margin-bottom: 0;
+    }
+  }
+  &__header {
+    width: 100%;
+  }
+  &__title {
+    @include text(2.8rem, bold, 3.4rem);
+    width: 100%;
+    margin-bottom: 20px;
+    color: var(--secondary-color);
+  }
+  &__form {
+    margin: 0 10px;
+    input,
+    select {
+      border: 1px solid #dfeaf5;
+    }
+  }
+  &__form-content {
+    @include grid(1.5fr 1fr, 20px);
+    grid-template-areas: "options options"
+                         "sideA sideB";
+  }
+  &__form-options {
+    @include flex(space-evenly, 20px);
+    grid-area: options;
+    flex-wrap: wrap;
+    & > label {
+      flex: 1;
+      min-width: 150px;
+      max-width: 300px;
+    }
+  }
+  &__form-selects {
+    @include flex(center, 10px);
+    & > select.field__select {
+      flex: 1;
+    }
+  }
+  &__form-side {
+    & > label.field {
+      max-width: none;
+      & input {
+        margin-bottom: 15px;
+      }
+    }
+    &:first-child {
+      grid-area: sideA;
+    }
+    &:last-child {
+      grid-area: sideB;
+      position: sticky;
+      max-height: 300px;
+      top: 0;
+    }
+  }
+  &__form-side-card {
+    @include flex(space-between, 20px);
+    min-height: 100px;
+    max-height: 300px;
+    background-color: var(--neutral-color);
+    border-radius: 15px;
+    padding: 15px;
+    border: 1px solid #dfeaf5;
+    flex-direction: column;
+  }
+  &__form-card-title {
+    @include text(2rem, bold, 3rem, center);
+    color: var(--secondary-color);
+    margin-bottom: 30px;
+  }
+  &__form-price {
+    @include flex(space-evenly);
+    width: 100%;
+  }
+  &__form-link,
+  &__form-price-span {
+    @include text(1.6rem, 500, 2rem, center);
+    margin-top: 20px;
+    text-transform: uppercase;
+  }
+  &__form-link {
+    display: block;
+    margin: 25px auto 0;
+    color: var(--text-black-color);
+    text-transform: none;
+    &--terms {
+      display: inline;
+      margin-top: 0;
+      margin-left: 5px;
+    }
+  }
+  &__form-submit {
+    @include primary-button();
+    justify-content: space-between;
+    width: 100%;
+    max-width: 240px;
+    height: 72px;
+    margin: 30px 0 30px auto;
+    padding: 10px;
+    border-radius: 52px;
+    box-shadow: 14px 22px 52px -12px rgba(60, 61, 66, 0.25);
+    span {
+      margin-left: 20px;
+    }
+  }
+  &__form-submit-icon {
+    width: 52px;
+    height: 52px;
+    padding: 10px;
+    background: var(--primary-color);
+    border-radius: 50%;
+  }
+  &__button {
+    @include primary-button();
+    width: 100%;
+    max-width: 200px;
+    height: 60px;
+    margin-left: auto;
+    padding: 10px;
+    border-radius: 52px;
+    box-shadow: 14px 22px 52px -12px rgba(60, 61, 66, 0.25);
+    background: var(--primary-color);
+    color: var(--neutral-color);
+    &:active {
+      transform: translateY(0);
+    }
+  }
+  &__button-icon {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 
 @import "./responsive/Modal";

@@ -6,7 +6,7 @@ import type { ComponentType, Ref } from "react";
 import type { FieldHookConfig } from "formik";
 import type { HOCField, HOCFieldProps } from "@typing/hocs";
 
-import "@cstyles/Input.scss";
+import "@stylesComponents/Input.scss";
 
 function withField<T extends HOCField = HOCField>(InputComponent: ComponentType<T>) {
   const WithField = forwardRef((props: Omit<T, keyof HOCField>, ref: Ref<HTMLLabelElement>) => {
@@ -25,6 +25,7 @@ function withField<T extends HOCField = HOCField>(InputComponent: ComponentType<
         data-readonly={newProps.readOnly}
         data-disabled={newProps.disabled}
         data-password={newProps.type === "password"}
+        data-select={!newProps.type}
         className={`field${fileStyles}`}
         {...datas}
       >
@@ -36,14 +37,14 @@ function withField<T extends HOCField = HOCField>(InputComponent: ComponentType<
           helpers={helpers}
           label={label}
         />
-        <p
+        {/* <p
           className="field__text"
           title={meta.error}
           data-error={error}
           data-error-msg={error ? meta.error : null}
         >
           {label}
-        </p>
+        </p> */}
       </label>
     );
   });

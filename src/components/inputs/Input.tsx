@@ -24,7 +24,7 @@ const GeneralInput = ({ error, field, meta, helpers, type, ...props }: Omit<Inpu
         >
           <img
             src={showPassword ? "IconEye" : "IconEyeClose"}
-            alt={showPassword ? "Show password" : "Hide password"}
+            alt={showPassword ? "Hide password" : "Show password"}
             className="field__show-icon"
           />
         </button>

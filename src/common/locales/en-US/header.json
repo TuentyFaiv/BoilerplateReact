@@ -1,0 +1,13 @@
+{
+  "about": "About",
+  "plans": "Plans",
+  "contact": "Contact",
+  "signin": "Sign in",
+  "signup": "Sign up",
+  "signout": "Sign out",
+  "reserved": "All Rights Reserved.",
+  "copy-right": "Hypothetical or simulated performance results have certain limitations. Unlike an actual performance record, simulated results do not represent actual trading. Also, since the trades have not been executed, the results may have under-or-over compensated for the impact, if any, of certain market factors, such as lack of liquidity. Simulated trading programs in general are also subject to the fact that they are designed with the benefit of hindsight. No representation is being made that any account will or is likely to achieve profit or losses similar to those shown. By using TRADERBOTIC, you acknowledge that you are familiar with these risks and that you are solely responsible for the outcomes of your decisions. We accept no liability whatsoever for any direct or consequential loss arising from the use of this product. It's to be noted carefully in this respect, that past results are not necessarily indicative of future performance.",
+  "legals": "Legal",
+  "terms": "Terms and Conditions",
+  "privacy": "Privacy Policy"
+}

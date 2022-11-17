@@ -1,6 +1,6 @@
 @use "sass:map";
 
-@import "Vars";
+@import "./Vars";
 
 @mixin for-size($size) {
   $media: map-get($devices, $size);
@@ -11,23 +11,23 @@
     }
   }
 }
-@mixin flex($justify, $gap: false, $align: center) {
+@mixin flex($justify, $gap: false) {
   display: flex;
   justify-content: $justify;
-  align-items: $align;
+  align-items: center;
   @if $gap {
     gap: $gap;
   }
 }
 @mixin grid($columns, $gap) {
   display: grid;
-  grid-template-columns: $columns;
-  gap: $gap;
+  grid-template-columns: ($columns);
+  grid-gap: ($gap);
 }
 @mixin text($size, $weight: initial, $line-height: initial, $align: initial) {
   font-style: normal;
-  font-size: $size;
   font-weight: $weight;
+  font-size: $size;
   line-height: $line-height;
   text-align: $align;
 }
@@ -38,13 +38,39 @@
   margin: 0 auto;
   padding: $padding;
 }
-@mixin background-img($image, $color: false) {
-  @if $color {
-    background: $image, $color;
-  } @else {
-    background-image: $image;
-  }
+@mixin background-img($image) {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  background-image: $image;
+}
+@mixin primary-title() {
+  @include text(4rem, 800, 5rem);
+  @include for-size(tablet-portrait) {
+    font-size: 2.8rem;
+    line-height: 3.7rem;
+    text-align: center;
+  }
+  @include for-size(phone-big) {
+    font-size: 2.2rem;
+    line-height: 2.9rem;
+  }
+}
+@mixin secondary-title() {
+  @include text(5rem, 800, 6rem);
+  @include for-size(tablet-portrait) {
+    font-size: 3.5rem;
+    line-height: 4.2rem;
+    text-align: center;
+  }
+  @include for-size(phone-big) {
+    font-size: 2.8rem;
+    line-height: 3.5rem;
+  }
+}
+@mixin primary-button($justify: center, $gap: false) {
+  @include flex($justify, $gap);
+  @include text(1.4rem, 700, 2rem);
+  background-color: white;
+  border-radius: 50px;
 }

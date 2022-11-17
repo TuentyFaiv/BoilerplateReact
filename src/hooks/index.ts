@@ -6,3 +6,5 @@ export { default as useModal } from "./useModal";
 export { default as useQuery } from "./useQuery";
 export { default as useCalendar } from "./useCalendar";
 export { default as useMakeOptions } from "./useMakeOptions";
+export { default as useAuthentication } from "./useAuthentication";
+export { default as useAntifraudTokens } from "./useAntifraudTokens";

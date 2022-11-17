@@ -1,0 +1,8 @@
+{
+  "payment-method": "Elija el método de pago",
+  "total": "Total",
+  "psp-submit": "Pagar",
+  "errors-title": "Algo salió mal",
+  "cardDeclined": "Tarjeta declinada",
+  "openpay-completed": "Pago exitoso"
+}

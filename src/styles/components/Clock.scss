@@ -1,0 +1,54 @@
+@import "../Mixins";
+
+$bg: url("@images/bg-clock.png");
+
+.clock {
+  $root: &;
+  @include background-img($bg);
+  width: 100%;
+  padding: 50px 0;
+  &__content {
+    @include content();
+  }
+  &__title {
+    @include text(4rem, 800, 4.7rem, center);
+    color: var(--neutral-color);
+  }
+  &__subtitle {
+    @extend #{$root}__title;
+    font-size: 5rem;
+    line-height: 5.7rem;
+    background: var(--primary-color);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  &__counter {
+    @include flex(center);
+    margin-top: 50px;
+  }
+  &__item {
+    flex: 1;
+    max-width: 120px;
+    height: 162px;
+    margin: 0 8px;
+    border-radius: 14px;
+  }
+  &__item-number {
+    @include flex(center);
+    @include text(8rem, 300, 4.4rem, center);
+    height: calc(100% - 42px);
+    background-color: #474747;
+    color: var(--neutral-color);
+    border-radius: 14px 14px 0 0;
+  }
+  &__item-title {
+    @include text(1.6rem, 800, 4.2rem, center);
+    width: 100%;
+    background: var(--primary-color);
+    color: var(--neutral-color);
+    border-radius: 0 0 14px 14px;
+  }
+}
+
+@import "./responsive/Clock";

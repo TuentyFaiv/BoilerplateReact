@@ -18,11 +18,13 @@ export default class Http {
 
   #api: string;
   #api_local: string;
+  #api_punkaso: string;
   #token?: string;
 
   private constructor(token?: string) {
     this.#api = globalConfig.api;
     this.#api_local = globalConfig.api_local;
+    this.#api_punkaso = globalConfig.api_punkaso;
     this.#token = token;
 
     Object.freeze(this);
@@ -77,7 +79,12 @@ export default class Http {
         ...(config.signal ? { signal: config.signal } : {})
       };
 
-      const url = `${config.local ? this.#api_local : this.#api}/${config.endpoint}${config.query}`;
+      let api = this.#api;
+
+      if (config.local) api = this.#api_local;
+      if (config.punkaso) api = this.#api_punkaso;
+
+      const url = `${api}/${config.endpoint}${config.query}`;
 
       if (config.log) this.#log({ url, request: requestConfig });
 
@@ -88,19 +95,21 @@ export default class Http {
           const response = await request.json();
 
           if (config.log) this.#log({ response });
-          if (response.errors || request.status !== 200) {
+          if (response.errors || response.error || request.status !== 200) {
             throw new ServiceError({
-              message: config.errorMessage ?? response.message,
+              message: config.errorMessage ?? response.message ?? response.error,
               code: response?.code ?? "",
               status: response.status,
               errors: response.errors ?? response.error ?? ""
             });
           }
 
+          const payload = response.payload ?? response.data ?? response;
+
           return {
             success: response.success,
             message: response.message,
-            payload: response.payload
+            payload
           };
       }
     } catch (error) {
@@ -123,6 +132,10 @@ export default class Http {
 
       throw new Error(message);
     }
+  }
+
+  getToken() {
+    return this.#token;
   }
 
   #log(httpLog: HTTPLog) {

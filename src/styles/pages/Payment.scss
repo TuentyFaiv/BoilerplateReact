@@ -1,0 +1,156 @@
+@import "../Mixins";
+
+.payment {
+  $root: &;
+  width: 100%;
+  padding: 50px 16px 100px;
+  min-height: 80vh;
+  background-color: var(--neutral-three-color);
+  &__content {
+    @include content(1500px, 0);
+  }
+  &__form {
+    @include grid(1.5fr 1fr, 50px);
+    width: 100%;
+    & label {
+      max-width: none;
+    }
+  }
+  &__side {
+    @include flex(flex-start, 20px);
+    width: 100%;
+    flex-direction: column;
+  }
+  &__summary {
+    @extend #{$root}__side;
+    position: sticky;
+    top: 50px;
+    z-index: 9;
+  }
+  &__article {
+    @include flex(space-between, 30px);
+    width: 100%;
+    min-height: 180px;
+    padding: 25px;
+    background-color: var(--neutral-color);
+    border-radius: 20px;
+    flex-direction: column;
+  }
+  &__article-title {
+    @include text(2.4rem, bold, 2.8rem, center);
+  }
+  &__article-price {
+    @include flex(space-evenly, 10px);
+    width: 100%;
+    &--flex {
+      @include flex(center, 5px);
+    }
+    &--box {
+      @include text(1.8rem, 600, 2.2rem, center);
+    }
+  }
+  &__psps {
+    @include flex(flex-start, 20px);
+    width: 100%;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--boxshadow-color);
+    flex-wrap: wrap;
+    & > label {
+      flex: 1;
+      max-width: none;
+    }
+  }
+  &__change-psp {
+    @include text(1.8rem, normal, 2rem);
+    padding: 5px;
+    border-bottom: 1px solid transparent;
+    &::before {
+      @include text(2rem, normal, 2.2rem);
+      display: inline-block;
+      content: "< ";
+      margin-right: 5px;
+    }
+    &:hover {
+      color: var(--primary-text-color);
+      border-bottom-color: var(--primary-text-color);
+    }
+  }
+  &__flex {
+    @include flex(center, 10px);
+    width: 100%;
+    flex-wrap: wrap;
+    &--child {
+      flex-wrap: nowrap;
+    }
+    & > label.field {
+      min-width: 150px;
+    }
+    & > label.field,
+    & > div {
+      flex: 1;
+    }
+  }
+  &__subtitle {
+    @include text(1.4rem, 600, 1.9rem);
+    color: var(--text-black-color);
+  }
+  &__text {
+    @include text(1.2rem, normal, 1.4rem, start);
+    width: 100%;
+    color: var(--text-black-color);
+  }
+  &__brands {
+    @include flex(flex-start, 5px);
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  &__brands-image {
+    display: block;
+    object-fit: contain;
+  }
+  &__brand {
+    display: block;
+    flex: 1;
+    min-width: 60px;
+    max-height: 30px;
+    object-fit: contain;
+  }
+  &__openpay-logo {
+    display: block;
+    width: 100%;
+    max-width: 150px;
+    height: auto;
+    object-fit: contain;
+  }
+  &__openpay-address {
+    @include text(1.2rem, normal, 1.3rem, center);
+    display: block;
+    color: #5C5C5C;
+    margin: 0 auto;
+  }
+  &__security {
+    @include flex(flex-start, 10px);
+  }
+  &__security-icon {
+    display: block;
+    width: 25px;
+    height: 25px;
+  }
+  &__link {
+    color: var(--primary-text-color);
+    text-decoration: none;
+    border-bottom: 1px solid var(--primary-text-color);
+  }
+  &__cvv {
+    @include flex(center, 5px);
+    min-width: max-content;
+  }
+  &__cvv-icon {
+    display: block;
+    width: 100%;
+    max-width: 55px;
+    object-fit: contain;
+  }
+}
+
+@import "./responsive/Payment";

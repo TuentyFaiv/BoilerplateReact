@@ -1,13 +1,79 @@
 .header {
-  @include for-size(desktop-xbig) {}
-  @include for-size(desktop-big) {}
-  @include for-size(desktop-mid) {}
-  @include for-size(desktop) {}
-  @include for-size(tablet-landscape) {}
-  @include for-size(tablet-portrait) {}
-  @include for-size(tablet-small) {}
-  @include for-size(phone-xbig) {}
-  @include for-size(phone-big) {}
-  @include for-size(phone-mid) {}
-  @include for-size(phone) {}
+  $root: &;
+  @include for-size(tablet-landscape) {
+    &__up {
+      right: 5%;
+    }
+    &__up-icon {
+      width: 80px;
+    }
+  }
+  @include for-size(tablet-portrait) {
+    &__list-item {
+      &:not(:last-child) {
+        margin-right: 15px;
+      }
+    }
+    &__logo-picture {
+      max-width: 100px;
+    }
+    &__up {
+      right: 3%;
+    }
+  }
+  @include for-size(tablet-small) {
+    &__content {
+      @include flex(space-between);
+    }
+    &__logo-picture {
+      max-width: 100px;
+    }
+    &__menu-button {
+      display: block;
+      z-index: 20;
+    }
+    &__list {
+      display: none;
+      &--mobile {
+        display: flex;
+        height: 100%;
+        justify-content: space-evenly;
+        flex-direction: column;
+        #{$root}__list-item {
+          &:nth-child(1),
+          &:nth-child(2),
+          &:nth-child(3) {
+            display: block;
+          }
+        }
+      }
+    }
+    &__list-item,
+    &__link {
+      color: var(--neutral-color);
+      &:hover,
+      &--active {
+        border-bottom-color: var(--neutral-color);
+      }
+    }
+    &__nav {
+      position: fixed;
+      width: 100%;
+      height: 100vh;
+      padding: 50px 0;
+      clip-path: circle(0 at calc(100% - 30px) 40px);
+      background: linear-gradient(52.79deg, #63B03E 6.4%, #89D665 91.29%);
+      top: 0;
+      left: 0;
+      z-index: 15;
+      pointer-events: none;
+      flex-direction: column;
+      justify-content: space-evenly;
+      transition: clip-path .5s ease;
+      &[data-active="true"] {
+        pointer-events: initial;
+        clip-path: circle(150% at 100% 0);
+      }
+    }
+  }
 }

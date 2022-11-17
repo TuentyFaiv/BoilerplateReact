@@ -9,18 +9,18 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    debug: config.i18n_debug === "true",
+    debug: process.env.DEBUG_I18NEXT === "true",
     fallbackLng: config.i18n_fallback_lang,
     supportedLngs: config.i18n_langs,
     ns: [
-      "errors",
-      "footer",
-      "formik",
+      "translation",
       "header",
+      "clock",
+      "formik",
       "modal",
+      "errors",
       "swal",
-      "terms",
-      "translation"
+      "terms"
     ],
     nsSeparator: false,
     load: "currentOnly",

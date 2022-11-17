@@ -1,13 +1,239 @@
-.home {
-  @include for-size(desktop-xbig) {}
-  @include for-size(desktop-big) {}
-  @include for-size(desktop-mid) {}
-  @include for-size(desktop) {}
-  @include for-size(tablet-landscape) {}
-  @include for-size(tablet-portrait) {}
-  @include for-size(tablet-small) {}
-  @include for-size(phone-xbig) {}
-  @include for-size(phone-big) {}
-  @include for-size(phone-mid) {}
-  @include for-size(phone) {}
+@include for-size(desktop-xbig) {
+}
+@include for-size(desktop-big) {
+}
+@include for-size(desktop) {
+}
+@include for-size(tablet-landscape) {
+  .meta {
+    &__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}
+@include for-size(tablet-portrait) {
+  .hero {
+    &__text {
+      padding: 70px 0;
+      margin: auto;
+    }
+    &__subtitle {
+      text-align: center;
+    }
+    &__paragraph {
+      text-align: center;
+    }
+    &__button {
+      margin: 20px auto;
+    }
+  }
+  .robots {
+    &__container {
+      padding: 70px 16px;
+    }
+    &__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  .contact {
+    &__title {
+      font-size: 3rem;
+      line-height: 3.4rem;
+    }
+    &__subtitle {
+      font-size: 4rem;
+      line-height: 4.7rem;
+    }
+  }
+  .who {
+    &__grid {
+      grid-template-columns: 1fr;
+    }
+    &__text {
+      text-align: center;
+    }
+  }
+  .meta {
+    &__value {
+      width: 50%;
+    }
+  }
+  .smart {
+    &__banner-title {
+      font-size: 3.4rem;
+      line-height: 4.1rem;
+    }
+    &__title {
+      font-size: 3rem;
+      line-height: 3.7rem;
+    }
+    &__subtitle {
+      font-size: 4rem;
+      line-height: 4.7rem;
+    }
+  }
+}
+@include for-size(tablet-small) {
+  .meta {
+    &__grid {
+      grid-template-columns: 100%;
+    }
+  }
+  .contact {
+    &__review {
+      &[data-active="reviewOne"] {
+        &::after {
+          left: 32%;
+        }
+      }
+      &[data-active="reviewThree"] {
+        &::after {
+          left: 68%;
+        }
+      }
+    }
+  }
+  .smart {
+    &__banner-title {
+      font-size: 3rem;
+      line-height: 3.7rem;
+    }
+    &__title {
+      font-size: 2rem;
+      line-height: 2.7rem;
+    }
+    &__subtitle {
+      font-size: 3rem;
+      line-height: 3.7rem;
+    }
+  }
+}
+@include for-size(phone-xbig) {
+  .contact {
+    &__title {
+      font-size: 2.4rem;
+      line-height: 2.8rem;
+    }
+    &__subtitle {
+      font-size: 3rem;
+      line-height: 3.7rem;
+    }
+    &__review {
+      &[data-active="reviewOne"] {
+        &::after {
+          left: 27%;
+        }
+      }
+      &[data-active="reviewThree"] {
+        &::after {
+          left: 73%;
+        }
+      }
+    }
+    &__form {
+      & > div > label.input.input--check {
+        width: 100%;
+        max-width: 392px;
+        margin: 0 auto;
+      }
+    }
+    &__form-grid {
+      grid-template-columns: 100%;
+      & label {
+        margin: 0 auto;
+      }
+      & label.input[for="email"],
+      & label.input[for="message"] {
+        grid-area: initial;
+        max-width: 392px;
+      }
+    }
+  }
+  .smart {
+    &__banner-title {
+      font-size: 2.6rem;
+      line-height: 3.2rem;
+    }
+    &__title {
+      font-size: 1.8rem;
+      line-height: 2.4rem;
+    }
+    &__subtitle {
+      font-size: 2.2rem;
+      line-height: 2.6rem;
+    }
+  }
+}
+@include for-size(phone-big) {
+  .hero {
+    &__subtitle {
+      font-size: 1.7rem;
+      line-height: 2.1rem;
+    }
+    &__paragraph {
+      font-size: 1.3rem;
+      line-height: 1.7rem;
+    }
+  }
+  .robots {
+    &__item {
+      flex-direction: column;
+      align-items: center;
+    }
+    &__box-title {
+      text-align: center;
+    }
+    &__box-paragraph {
+      text-align: center;
+    }
+  }
+  .contact {
+    &__reviews-people {
+      min-height: 70px;
+    }
+    &__people {
+      width: 60px;
+      height: 60px;
+      &[data-active="true"] {
+        width: 70px;
+        height: 70px;
+      }
+    }
+  }
+  .meta {
+    &__value {
+      width: 100%;
+    }
+  }
+}
+@include for-size(phone-mid) {
+  .meta {
+    &__grid {
+      padding: 0;
+    }
+  }
+  .contact {
+    &__title {
+      font-size: 2rem;
+      line-height: 2.4rem;
+    }
+    &__subtitle {
+      font-size: 2.4rem;
+      line-height: 3.1rem;
+    }
+    &__review {
+      &[data-active="reviewOne"] {
+        &::after {
+          left: 20%;
+        }
+      }
+      &[data-active="reviewThree"] {
+        &::after {
+          left: 81%;
+        }
+      }
+    }
+  }
+}
+@include for-size(phone) {
 }

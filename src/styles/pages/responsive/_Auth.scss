@@ -1,0 +1,73 @@
+.auth {
+  @include for-size(tablet-portrait) {
+    &__form-row {
+      & label.input {
+        &:first-child {
+          flex: 2.1;
+        }
+        &:last-child {
+          flex: 5;
+        }
+      }
+    }
+  }
+  @include for-size(tablet-small) {
+    &__form-row {
+      & label.input {
+        &:first-child {
+          flex: 2.5;
+        }
+        &:last-child {
+          flex: 5;
+        }
+      }
+    }
+  }
+  @include for-size(phone-xbig) {
+    &__form-row {
+      & label.input {
+        &:first-child {
+          flex: 2.6;
+          input.input__input {
+            padding-right: 6px;
+          }
+        }
+        &:last-child {
+          flex: 4;
+          input.input__input {
+            padding-left: 6px;
+          }
+        }
+      }
+    }
+  }
+  @include for-size(phone-big) {
+    &__title {
+      font-size: 4rem;
+      line-height: 4.7rem;
+    }
+    &__form-grid {
+      grid-template-columns: 100%;
+      grid-gap: 0 10px;
+    }
+    &__form-row {
+      & label.input {
+        &:first-child {
+          flex: 2;
+        }
+        &:last-child {
+          flex: 6;
+        }
+      }
+    }
+  }
+  @include for-size(phone) {
+    &__form-row {
+      & label.input {
+        &:first-child {
+          flex: 2.5;
+        }
+      }
+    }
+  }
+}

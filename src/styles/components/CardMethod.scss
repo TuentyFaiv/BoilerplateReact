@@ -1,0 +1,22 @@
+@import "../Mixins";
+
+.card-method {
+  &__grid {
+    @include grid(100%, 10px);
+    &--two {
+      grid-template-columns: 1fr 1fr;
+    }
+    &--three {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+    & > label.field {
+      max-width: none;
+    }
+  }
+  &__cvv {
+    @include flex(flex-start, 10px);
+    padding-bottom: 20px;
+  }
+}
+
+@import "./responsive/CardMethod";

@@ -1,13 +1,29 @@
-import { useTranslation } from "react-i18next";
+import "@stylesPages/Home.scss";
 
-import "@pstyles/Home.scss";
+import {
+  ContactSection,
+  SmartSection,
+  PersonalizedSection,
+  PlansSection,
+  RobotsSection,
+  AboutSection,
+  HeroSection,
+  ModalPayment
+} from "@components";
 
-export default function Home() {
-  const { t } = useTranslation();
-
+function Home() {
   return (
-    <div className="home">
-      <h1 className="home__title">{t("home-title")}</h1>
-    </div>
+    <>
+      <ModalPayment />
+      <HeroSection />
+      <AboutSection />
+      <RobotsSection />
+      <PlansSection />
+      <PersonalizedSection />
+      <SmartSection />
+      <ContactSection />
+    </>
   );
 }
+
+export default Home;

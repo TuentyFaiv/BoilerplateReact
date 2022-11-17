@@ -1,10 +1,11 @@
 import type { LoaderSimpleProps } from "@typing/proptypes";
 
-import "@cstyles/Loader.scss";
+import "@stylesComponents/Loader.scss";
 
 const Simple = ({ msg }: LoaderSimpleProps) => (
   <div className="loader">
-    {msg}
+    <div className="loader__spinner" />
+    <p className="loader__text">{msg}</p>
   </div>
 );
 

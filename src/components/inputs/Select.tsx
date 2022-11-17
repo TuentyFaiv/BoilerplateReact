@@ -8,7 +8,7 @@ const SelectInput = ({ error, field, meta, helpers, ...props }: Omit<SelectField
   const { options = [], label, onSelect, ...remainingProps } = props;
   const selectRef = useRef<HTMLDivElement | null>(null);
   const value = useMemo(() => options.find(({ value: valueOption }) => (
-    valueOption === meta.value
+    valueOption === (meta.value || remainingProps.withoutValue)
   ))?.label || remainingProps.withoutValue, [meta.value, options, remainingProps.withoutValue]);
 
   const handleCloseSelect = () => {
@@ -43,7 +43,7 @@ const SelectInput = ({ error, field, meta, helpers, ...props }: Omit<SelectField
       helpers.setValue(options[0].value);
       if (onSelect) onSelect(options[0].value);
     }
-  }, [options, field, helpers, onSelect]);
+  }, [options, field.value, helpers, onSelect]);
 
   return (
     <div

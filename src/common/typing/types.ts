@@ -19,8 +19,16 @@ export type BootAuthSignup = Boot & {
   email: string;
 };
 
-export type BootContact = Boot & BootAuthSignup & {
-  onlyNumbers: string;
+export type BootPayment = Boot & {
+  numbers: string;
+  methods: string;
+};
+
+export type BootContact = Boot & BootAuthSignup;
+
+export type SelectOption = {
+  label: string;
+  value: string;
 };
 
 export type Day = {
@@ -38,4 +46,33 @@ export type Month = {
 export type Year = {
   number: number;
   months: Month[];
+};
+
+export type Review = {
+  text: string;
+  name: string;
+  profession: string;
+};
+
+export type ClockState = {
+  future: number;
+  now: number;
+  timeleft: () => number;
+  day: () => number;
+  hours: () => number;
+  minutes: () => number;
+  seconds: () => number;
+};
+
+export type ModalTypeState = "terms" | "privacy" | "both" | undefined;
+
+export type Product = {
+  title: string;
+  cover: string;
+  price: number;
+  list: {
+    bold: string;
+    light: string | null;
+    pairs?: number;
+  }[];
 };

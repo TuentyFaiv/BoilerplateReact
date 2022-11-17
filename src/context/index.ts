@@ -2,3 +2,4 @@
 export { AppProvider, useAppContext } from "./app/AppContext";
 export { ServiceProvider, useServiceContext } from "./service/ServiceContext";
 export { default as Http } from "./service/http";
+export { CartProvider, useCartContext } from "./cart/CartContext";

@@ -1,13 +1,43 @@
 .footer {
-  @include for-size(desktop-xbig) {}
-  @include for-size(desktop-big) {}
-  @include for-size(desktop-mid) {}
-  @include for-size(desktop) {}
-  @include for-size(tablet-landscape) {}
-  @include for-size(tablet-portrait) {}
-  @include for-size(tablet-small) {}
-  @include for-size(phone-xbig) {}
-  @include for-size(phone-big) {}
-  @include for-size(phone-mid) {}
-  @include for-size(phone) {}
+  @include for-size(desktop) {
+    &__list {
+      gap: 0 15px;
+    }
+  }
+  @include for-size(tablet-landscape) {
+    &__content {
+      grid-template-columns: 100%;
+      grid-template-areas: "links" "copy-right" "text";
+    }
+    &__list {
+      gap: 0 12px;
+      margin-right: auto;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+    }
+  }
+  @include for-size(tablet-portrait) {
+    &__copy-right,
+    &__list {
+      margin: 10px 0;
+    }
+    &__copy-right {
+      margin-right: 5px;
+    }
+  }
+  @include for-size(phone-big) {
+    &__list {
+      gap: 10px 12px;
+    }
+  }
+  @include for-size(phone-mid) {
+    &__list {
+      gap: 10px 15px;
+    }
+    &__link {
+      &--button {
+        max-width: 120px;
+      }
+    }
+  }
 }

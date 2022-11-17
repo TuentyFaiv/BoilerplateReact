@@ -1,0 +1,20 @@
+.card-method {
+  @include for-size(phone-big) {
+    &__grid {
+      &--three {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  }
+  @include for-size(phone-mid) {
+    &__grid {
+      &--two,
+      &--three {
+        grid-template-columns: 100%;
+      }
+    }
+    &__cvv {
+      justify-content: center;
+    }
+  }
+}

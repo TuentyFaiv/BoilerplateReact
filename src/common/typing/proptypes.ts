@@ -3,11 +3,18 @@ import type {
   InputHTMLAttributes,
   ReactNode,
   TextareaHTMLAttributes,
-  MouseEvent
+  MouseEvent,
+  ButtonHTMLAttributes
 } from "react";
-import type { FieldHookConfig } from "formik";
-import type { ObjStrCustom } from "./types";
-import type { SelectOption } from "./interfaces";
+import type {
+  FieldHookConfig,
+  FormikProps
+} from "formik";
+import type {
+  ModalTypeState,
+  ObjStrCustom,
+  Product
+} from "./types";
 import type { HookModalFunc } from "./hooks";
 import type {
   HOCAuth,
@@ -16,6 +23,8 @@ import type {
   HOCField,
   HOCFieldProps
 } from "./hocs";
+import type { PaymentValues, ReturnConfigPsps } from "./services";
+import type { DocumentFields } from "./payment";
 
 export interface InputProps extends HOCDatasetsProps, HOCDatasets {
   children?: ReactNode;
@@ -39,6 +48,7 @@ export type InputFieldProps = HOCFieldProps & HOCField & InputElement & {
   name: string;
   type: string;
   placeholder?: string;
+  required?: boolean;
 };
 
 type AreaElement = Omit<
@@ -59,6 +69,12 @@ export type FileFieldProps = HOCFieldProps & HOCField & InputElement & {
   defaultValue?: string;
   profile?: boolean;
   onChange?: (values: File[] | File) => void;
+};
+
+type SelectOption = {
+  value: string;
+  label: string;
+  key?: string;
 };
 
 export type SelectFieldProps = Omit<HOCFieldProps, "file"> & HOCField & {
@@ -93,8 +109,109 @@ export interface ModalProps {
 export interface ScrollLinkProps {
   to: string;
   text: string;
-  compareHash: string;
+  compareHash?: string;
   className: string;
-  children: ReactNode;
+  children?: ReactNode;
   span?: boolean;
+}
+
+export interface NavLinkProps {
+  to: string;
+  text: string;
+}
+
+export type LayoutProps = HOCAuth;
+
+type ModalTermsChildren = {
+  active: boolean;
+  open: (type: ModalTypeState) => void;
+};
+
+export interface ModalTermsProps {
+  onClose?: ModalProps["onClose"];
+  redirect?: string;
+  children?: (config: ModalTermsChildren) => ReactNode;
+}
+
+export interface ModalPaymentProps {
+  onClose?: ModalProps["onClose"];
+}
+
+export interface ExchangeAmountProps {
+  amount: number;
+  currency: string;
+}
+
+export interface ContactFormProps {
+  children: ReactNode;
+}
+
+export interface PersonalizedFormProps extends HOCAuth {
+  onBack: VoidFunction;
+}
+
+type ButtonProps = Pick<ButtonHTMLAttributes<HTMLButtonElement>,
+"form" | "disabled" | "type">;
+
+export interface ButtonBaseProps extends ButtonProps {
+  onClick: ((event: MouseEvent) => void) | (() => void);
+  children: ReactNode;
+  back?: boolean;
+  go?: boolean;
+  margin?: "center" | "start" | "end" | "zero";
+  size?: "big" | "normal" | "small";
+}
+
+export type ButtonGoProps = Partial<Omit<ButtonBaseProps,
+"children" | "go" | "back">> & {
+  text: string;
+};
+
+type ButtonBasic = Pick<ButtonBaseProps, "onClick" | "disabled">;
+
+export type ButtonGreenProps = ButtonBasic & {
+  text: string;
+};
+
+export type ButtonBackProps = ButtonBasic;
+
+export interface CardProductProps extends HOCAuth, Product {
+  country: string;
+}
+
+export interface PaymentFormikProps {
+  configuration: ReturnConfigPsps[];
+  pspActive: ReturnConfigPsps;
+}
+
+export type PaymentFormProps = PaymentFormikProps & FormikProps<PaymentValues>;
+
+export interface ChoosePspProps extends PaymentFormikProps {
+  values: FormikProps<PaymentValues>["values"];
+}
+
+export interface DLocalProps {
+  document: string;
+  name: string;
+}
+
+export interface GenericsPaymentProps extends Partial<DocumentFields> {
+  activeDocument: boolean;
+  currencies: SelectOption[];
+  methods: SelectOption[];
+}
+
+export interface AddressProps {
+  state?: boolean;
+}
+
+export interface CardProps {
+  holder?: "full" | "split";
+  icon?: boolean;
+  email?: boolean;
+  phone?: boolean;
+}
+
+export interface SummaryProps {
+  terms: PaymentValues["terms"];
 }

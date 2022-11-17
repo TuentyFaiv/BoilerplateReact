@@ -1,0 +1,21 @@
+.payment {
+  @include for-size(tablet-landscape) {
+    &__form {
+      grid-template-columns: 1.25fr .75fr;
+      gap: 20px;
+    }
+  }
+  @include for-size(tablet-portrait) {
+    &__form {
+      grid-template-columns: 100%;
+      gap: 50px;
+    }
+  }
+  @include for-size(phone-mid) {
+    &__flex {
+      &--child {
+        flex-wrap: wrap;
+      }
+    }
+  }
+}

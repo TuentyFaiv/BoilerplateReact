@@ -3,7 +3,7 @@
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module",
-    "project": "./tsconfig.json"
+    "project": "./tsconfig.eslint.json"
   },
   "extends": [
     "airbnb",
@@ -35,7 +35,8 @@
     },
     "import/resolver": {
       "node": {},
-      "typescript": {}
+      "typescript": {},
+      "webpack": {}
     }
   },
   "rules": {

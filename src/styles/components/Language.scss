@@ -1,9 +1,48 @@
 @import "../Mixins";
 
-.lang {
-  $root: &;
-  &__options {}
-  &__option {}
-}
+$icon-menu: url("@icons/lang-menu.svg");
 
-@import "./responsive/Language";
+.lang {
+  @include text(1.6rem, normal, 2.2rem);
+  position: relative;
+  display: inline-block;
+  width: 30px;
+  margin-right: 10px;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+  &::after {
+    position: absolute;
+    content: $icon-menu;
+    top: -1px;
+    right: -10px;
+    transition: transform .5s ease;
+  }
+  &[data-open="true"] {
+    &::after {
+      transform: rotateX(180deg);
+    }
+  }
+  &__options {
+    position: absolute;
+    background-color: var(--secondary-color);
+    border-radius: 5px;
+    top: 100%;
+    left: 0;
+  }
+  &__option {
+    @include text(1.4rem, normal, 2rem);
+    padding: 5px 10px;
+    color: var(--neutral-color);
+    text-transform: uppercase;
+    &:first-child {
+      border-radius: 5px 5px 0 0;
+    }
+    &:last-child {
+      border-radius: 0 0 5px 5px;
+    }
+    &:hover {
+      background: var(--neutral-two-color);
+    }
+  }
+}

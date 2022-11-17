@@ -72,17 +72,17 @@ export default function useCalendar(type: HookCalendarParam = "past"): HookCalen
         .find(({ number }) => (number === selected.month))?.days ?? months[0].days
   ), [months, years, selected.year, selected.month]);
 
-  const chooseYear = useCallback((year: string | number) => {
+  const chooseYear = useCallback((year: string | number | unknown) => {
     setSelected((prev) => ({ ...prev, year: parseInt(`${year}`, 10) }));
-  }, [setSelected]);
+  }, []);
 
-  const chooseMonth = useCallback((month: string) => {
-    setSelected((prev) => ({ ...prev, month }));
-  }, [setSelected]);
+  const chooseMonth = useCallback((month: string | unknown) => {
+    setSelected((prev) => ({ ...prev, month: `${month}` }));
+  }, []);
 
-  const chooseDay = useCallback((day: string) => {
-    setSelected((prev) => ({ ...prev, day }));
-  }, [setSelected]);
+  const chooseDay = useCallback((day: string | unknown) => {
+    setSelected((prev) => ({ ...prev, day: `${day}` }));
+  }, []);
 
   return {
     calendar: {

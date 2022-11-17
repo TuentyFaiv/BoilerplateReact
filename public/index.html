@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= htmlWebpackPlugin.options.title %></title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="loader-root"></div>
+  <div id="modal-root"></div>
+  <div id="root"></div>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" ></script>
+  <script type="text/javascript" src="https://js.openpay.mx/openpay.v1.min.js" ></script>
+  <script type='text/javascript' src="https://js.openpay.mx/openpay-data.v1.min.js" ></script>
+  <script type='text/javascript' src="<%= htmlWebpackPlugin.options.dlocalScript %>"></script>
+</body>
+</html>

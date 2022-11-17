@@ -1,0 +1,36 @@
+.clock {
+  @include for-size(tablet-small) {
+    &__item {
+      max-width: 100px;
+      height: 142px;
+    }
+    &__item-number {
+      font-size: 5rem;
+    }
+  }
+  @include for-size(phone-xbig) {
+    &__item {
+      max-width: 80px;
+      height: 122px;
+      margin: 0 5px;
+    }
+    &__item-number {
+      font-size: 3.4rem;
+    }
+    &__item-title {
+      font-size: 1.4rem;
+    }
+  }
+  @include for-size(phone-mid) {
+    &__item {
+      max-width: 60px;
+      height: 102px;
+    }
+    &__item-number {
+      font-size: 2.4rem;
+    }
+    &__item-title {
+      font-size: 1.2rem;
+    }
+  }
+}

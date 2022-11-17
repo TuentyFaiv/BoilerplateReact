@@ -1,0 +1,13 @@
+{
+  "about": "Somos",
+  "plans": "Planes",
+  "contact": "Contacto",
+  "signin": "Iniciar sesión",
+  "signup": "Registrarse",
+  "signout": "Cerrar sesión",
+  "reserved": "Todos los derechos reservados.",
+  "copy-right": "Los resultados hipotéticos o simulados de rendimiento tienen ciertas limitaciones. A diferencia de un registro de rendimiento real, los resultados simulados no representan operaciones reales. Además, dado que las operaciones no se han ejecutado, los resultados pueden haber compensado en exceso o en defecto el impacto, si lo hubiera, de ciertos factores del mercado, como la falta de liquidez. Los programas de negociación simulada en general también están sujetos al hecho de que están diseñados con el beneficio de la retrospectiva. No se está haciendo ninguna declaración de que cualquier cuenta vaya a lograr o sea probable que logre ganancias o pérdidas similares a las mostradas. Al utilizar TRADERBOTIC, usted reconoce que está familiarizado con estos riesgos y que es el único responsable de los resultados de sus decisiones. No aceptamos ningún tipo de responsabilidad por cualquier pérdida directa o consecuente derivada del uso de este producto. Hay que tener muy en cuenta, a este respecto, que los resultados pasados no son necesariamente indicativos del rendimiento futuro.",
+  "legals": "Legales",
+  "terms": "Términos y Condiciones",
+  "privacy": "Política de Privacidad"
+}

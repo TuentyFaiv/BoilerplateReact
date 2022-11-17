@@ -1,6 +1,7 @@
-export interface SelectOption {
-  value: string;
-  label: string;
-  key?: string;
-  disabled?: boolean;
+export interface ModalPaymentState {
+  title: string;
+  subtitle?: string;
+  text?: string;
+  link?: string;
+  action?: "forestpayment" | "MIT" | "openpay";
 }

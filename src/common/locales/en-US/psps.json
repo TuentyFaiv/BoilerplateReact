@@ -1,0 +1,8 @@
+{
+  "payment-method": "Choose the payment method",
+  "total": "Total",
+  "psp-submit": "Pay",
+  "errors-title": "Something went wrong",
+  "cardDeclined": "Card Declined",
+  "openpay-completed": "Successful payment"
+}

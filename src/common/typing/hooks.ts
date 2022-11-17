@@ -3,10 +3,9 @@ import type {
   Day,
   Month,
   Year,
-  ObjStrCustom
+  ObjStrCustom,
+  SelectOption
 } from "./types";
-import type { SelectOption } from "./interfaces";
-import type { Media } from "./styles";
 
 // HookModal
 export type HookModalParameters = {
@@ -17,7 +16,7 @@ export type HookModalFunc = (custom?: unknown) => void;
 export type HookModalReturn = [boolean, HookModalFunc];
 
 // HookMedia
-export type HookMediaParameters = null | `(${Media})`;
+export type HookMediaParameters = null | `(${"max" | "min"}-width: ${number}px)`;
 export type HookMediaReturn = boolean;
 
 // HookCountry
@@ -53,9 +52,9 @@ type Calendar = {
 };
 export type HookCalendarReturn = {
   calendar: Calendar;
-  chooseYear: (year: string | number) => void;
-  chooseMonth: (month: string) => void;
-  chooseDay: (day: string) => void;
+  chooseYear: (year: string | number | unknown) => void;
+  chooseMonth: (month: string | unknown) => void;
+  chooseDay: (day: string | unknown) => void;
 };
 
 // HookDatePicker
@@ -86,6 +85,16 @@ export type HookDatePickerReturn = {
 // HookMakeOptions
 export type HookMakeOptionsParam<T = ObjStrCustom<string>> = {
   options: T[];
-  keys: SelectOption;
+  keys: {
+    label: string;
+    value: string;
+  };
 };
 export type HookMakeOptionsReturn = SelectOption[];
+
+export type HookAntifraudTokensState = {
+  payu: string;
+  openpay: string;
+};
+
+export type HookAntifraudTokensReturn = HookAntifraudTokensState;

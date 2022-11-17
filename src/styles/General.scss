@@ -1,0 +1,55 @@
+@import "./Mixins";
+
+/* General styles */
+* {
+  box-sizing: border-box;
+  outline: 0;
+  padding: 0;
+  margin: 0;
+}
+
+:root {
+  --primary-color: linear-gradient(233.88deg, #63b03e 34.58%, #89d665 100%);
+  --primary-text-color: #63b03e;
+  --secondary-color: #322f2f;
+  --secondary-light-color: #393434;
+  // --accent-color: ;
+  // --success-color: ;
+  --error-color: #C0392B;
+  // --warning-color: ;
+  --neutral-color: #ffffff;
+  --neutral-two-color: #c6d4e3;
+  --neutral-three-color: #f4f4f4;
+  --primary-font: "Manrope", sans-serif;
+  // --secondary-font: ;
+  --boxshadow-color: rgba(0, 0, 0, 0.25);
+  --white-color: #FFFFFF;
+  --text-white-color: #FFFCFC;
+  --text-black-color: #000000;
+}
+
+html {
+  font-size: 62.5%;
+  font-family: var(--primary-font);
+}
+body {
+  font-size: 1.6rem;
+  min-height: 100vh;
+}
+
+input,
+select,
+textarea,
+button {
+  font-size: 1.6rem;
+  background-color: transparent;
+  border: 0;
+  font-family: var(--primary-font);
+}
+button {
+  cursor: pointer;
+  transition: all 0.1s linear;
+}
+button:active {
+  transform: translateY(4px);
+}

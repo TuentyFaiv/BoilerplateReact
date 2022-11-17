@@ -1,15 +1,16 @@
-import type { HookMakeOptionsParam, HookMakeOptionsReturn } from "@typing/hooks";
-import type { SelectOption } from "@typing/interfaces";
-import type { ObjStrCustom } from "@typing/types";
+import { useMemo } from "react";
 
-export default function useMakeOptions<T extends ObjStrCustom<string>>({
+import type { ObjStrCustom, SelectOption } from "@typing/types";
+import type { HookMakeOptionsParam, HookMakeOptionsReturn } from "@typing/hooks";
+
+export default function useMakeOptions<T>({
   options,
   keys
 }: HookMakeOptionsParam<T>): HookMakeOptionsReturn {
-  const formatted: SelectOption[] = options.map((option) => ({
-    label: option[keys.label],
-    value: option[keys.value]
-  }));
+  const formatted: SelectOption[] = useMemo(() => options.map((option) => ({
+    label: `${(option as ObjStrCustom<string>)[keys.label]}`,
+    value: `${(option as ObjStrCustom<string>)[keys.value]}`
+  })), [options, keys]);
 
   return formatted;
 }

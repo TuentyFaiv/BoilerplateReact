@@ -1,11 +1,14 @@
 import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 
-import "@cstyles/Layout.scss";
+import type { LayoutProps } from "@typing/proptypes";
+
+import "@stylesComponents/Layout.scss";
 
 import { Header, Footer } from "@components";
+import { withAuth } from "@hoc";
 
-export default function Layout() {
+function Layout({ auth }: LayoutProps) {
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -14,7 +17,7 @@ export default function Layout() {
 
   return (
     <>
-      <Header />
+      <Header auth={auth} />
       <main className="layout">
         <Outlet />
       </main>
@@ -22,3 +25,5 @@ export default function Layout() {
     </>
   );
 }
+
+export default withAuth(Layout, "component");

@@ -1,5 +1,59 @@
 @import "../Mixins";
 
-.footer {}
+.footer {
+  width: 100%;
+  &__top {
+    width: 100%;
+    background-color: #25272B;
+  }
+  &__content {
+    @include content();
+    @include grid(1fr 1fr, 20px);
+    grid-template-areas: "copy-right links" "text text";
+    padding: 13px 20px;
+  }
+  &__content-text {
+    @include text(1.4rem, normal, 2rem);
+    grid-area: text;
+    color: var(--neutral-color);
+  }
+  &__bottom {
+    width: 100%;
+    min-height: 105px;
+    background-color: var(--neutral-three-color);
+    padding: 25px 0;
+  }
+  &__copy-right {
+    @include text(1.6rem, normal, 2.2rem);
+    grid-area: copy-right;
+    color: var(--neutral-color);
+    &--bold {
+      font-weight: 800;
+    }    
+  }
+  &__list {
+    @include flex(flex-end, 0 34px);
+    grid-area: links;
+    list-style: none;
+  }
+  &__link {
+    color: var(--neutral-color);
+    text-decoration: none;
+    &--button {
+      max-width: max-content;
+    }
+  }
+  &__logo-container {
+    display: block;
+    width: 100%;
+    max-width: 123px;
+    margin: 0 auto;
+  }
+  &__logo {
+    display: block;
+    width: 100%;
+    object-fit: contain;
+  }
+}
 
 @import "./responsive/Footer";

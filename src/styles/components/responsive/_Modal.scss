@@ -1,14 +1,103 @@
 .modal {
   $root: &;
-  @include for-size(desktop-xbig) {}
-  @include for-size(desktop-big) {}
-  @include for-size(desktop-mid) {}
-  @include for-size(desktop) {}
-  @include for-size(tablet-landscape) {}
-  @include for-size(tablet-portrait) {}
-  @include for-size(tablet-small) {}
-  @include for-size(phone-xbig) {}
-  @include for-size(phone-big) {}
-  @include for-size(phone-mid) {}
-  @include for-size(phone) {}
+  @include for-size(tablet-portrait) {
+    padding: 0 30px;
+    &__container {
+      padding: 20px;
+    }
+    &__title {
+      font-size: 2rem;
+      line-height: 3rem;
+      margin-bottom: 10px;
+    }
+    &[data-close="true"] {
+      #{$root}__content {
+        min-height: calc(70vh - 80px);
+        max-height: calc(70vh - 80px);
+      }
+    }
+    &[data-error="true"] {
+      #{$root}__content {
+        min-height: auto;
+        text-align: center;
+      }
+    }
+    &__form-card-title {
+      font-size: 1.6rem;
+      line-height: 2rem;
+    }
+    &__button {
+      max-width: 180px;
+      height: 45px;
+    }
+    &__form-submit {
+      height: 60px;
+    }
+    &__form-submit-icon {
+      width: 42px;
+      height: 42px;
+    }
+  }
+  @include for-size(tablet-small) {
+    &[data-psp="true"] {
+      #{$root}__container {
+        min-height: 80vh;
+      }
+      #{$root}__content {
+        min-height: calc(80vh - 80px);
+        max-height: calc(80vh - 80px);
+      }
+    }
+    &[data-error="true"] {
+      #{$root}__content {
+        min-height: auto;
+        text-align: center;
+      }
+    }
+    &__form-content {
+      margin: 0 auto;
+      grid-template-columns: 100%;
+      grid-template-areas: "options" "sideA" "sideB";
+      grid-gap: 15px;
+    }
+    &__form-submit {
+      margin: 30px auto;
+    }
+    &__form-side {
+      &:last-child {
+        min-height: 120px;
+      }
+    }
+  }
+  @include for-size(phone-xbig) {
+    padding: 0 20px;
+    &__form-options {
+      & > label {
+        min-width: max-content;
+      }
+    }
+  }
+  @include for-size(phone-big) {
+    &__form-options {
+      gap: 10px;
+    }
+  }
+  @include for-size(phone-mid) {
+    padding: 0 16px;
+    &[data-close="true"] {
+      #{$root}__button {
+        width: 30px;
+        height: 30px;
+        padding: 5px;
+        top: 6px;
+        right: 6px;
+      }
+    }
+    &__container {
+      padding: 16px;
+    }
+    &__form-selects {
+      flex-direction: column;
+    }
+  }
 }

@@ -1,89 +1,91 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "useDefineForClassFields": true,
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ESNext"
-    ],
-    "allowJs": false,
-    "skipLibCheck": true,
-    "esModuleInterop": false,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
     "jsx": "react-jsx",
-    "baseUrl": "./",
+    "module": "CommonJS",
+    "lib": [
+      "ES6",
+      "ESNext",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "strict": true,
+    "moduleResolution": "node",
+    "allowJs": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "noImplicitReturns": true,
+    "removeComments": true,
+    "noFallthroughCasesInSwitch": true,
+    "pretty": true,
+    "outDir": "./dist",
+    "rootDir": "./",
+    "baseUrl": "src",
     "paths": {
       "@images/*": [
-        "src/assets/images/*"
+        "assets/images/*"
       ],
       "@icons/*": [
-        "src/assets/images/icons/*"
+        "assets/images/icons/*"
       ],
       "@videos/*": [
-        "src/assets/videos/*"
+        "assets/videos/*"
       ],
       "@fonts/*": [
-        "src/assets/fonts/*"
+        "assets/fonts/*"
       ],
       "@utils": [
-        "src/common/utils.ts"
+        "common/utils.ts"
       ],
       "@typing/*": [
-        "src/common/typing/*"
+        "common/typing/*"
       ],
       "@config": [
-        "src/common/config.ts"
+        "common/config.ts"
+      ],
+      "@endpoints": [
+        "common/endpoints.ts"
       ],
       "@schemas": [
-        "src/common/schemas/index.ts"
+        "common/schemas/index.ts"
       ],
       "@services": [
-        "src/common/services/index.ts"
+        "common/services/index.ts"
       ],
       "@components": [
-        "src/components/index.ts"
+        "components/index.ts"
       ],
       "@containers": [
-        "src/containers/index.ts"
+        "containers/index.ts"
       ],
       "@context": [
-        "src/context/index.ts"
+        "context/index.ts"
       ],
       "@hooks": [
-        "src/hooks/index.ts"
+        "hooks/index.ts"
       ],
       "@hoc": [
-        "src/hoc/index.ts"
+        "hoc/index.ts"
       ],
       "@pages/*": [
-        "src/pages/*"
+        "pages/*"
       ],
-      "@cstyles/*": [
-        "src/styles/components/*"
+      "@stylesComponents/*": [
+        "styles/components/*"
       ],
-      "@pstyles/*": [
-        "src/styles/pages/*"
+      "@stylesPages/*": [
+        "styles/pages/*"
       ],
       "@styles": [
-        "src/styles/Globals.scss"
+        "styles/Globals.scss"
       ],
     }
   },
-  "include": [
-    "src",
-    "vite.config.ts"
-  ],
-  "references": [
-    {
-      "path": "./tsconfig.node.json"
-    }
+  "exclude": [
+    "node_modules",
+    "dist"
   ]
 }
